@@ -373,15 +373,21 @@ h4, h5, h6, .h4, .h5, .h6 {
     padding: 1rem 0;
 }
 
-.village-timeline::before {
+.timeline-snake {
     position: absolute;
-    top: 1.8rem;
-    bottom: 1.8rem;
-    left: 50%;
-    width: 3px;
-    content: "";
-    background: var(--bs-dark);
-    transform: translateX(-50%);
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+}
+
+.timeline-snake path {
+    fill: none;
+    stroke: var(--bs-dark);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 3;
 }
 
 .timeline-entry {
@@ -392,36 +398,51 @@ h4, h5, h6, .h4, .h5, .h6 {
     justify-content: center;
 }
 
+.timeline-entry::before {
+    position: absolute;
+    top: 50%;
+    z-index: 0;
+    width: 15%;
+    height: 2px;
+    content: "";
+    background: var(--bs-dark);
+    transform: translateY(-50%);
+}
+
+.timeline-entry-left::before { left: 50%; }
+.timeline-entry-right::before { right: 50%; }
+
 .timeline-year {
     position: absolute;
-    right: calc(50% + 1.75rem);
+    z-index: 1;
     min-width: 4rem;
     padding: .35rem .7rem;
-    background: #fff;
-    color: var(--bs-dark);
+    border: 1px solid var(--heritage-green);
+    border-radius: .3rem;
+    background: var(--heritage-green);
+    color: #fff;
     font-size: 1.05rem;
     font-weight: 700;
     text-align: center;
 }
 
+.timeline-entry-left .timeline-year { right: calc(50% + 1.75rem); }
+.timeline-entry-right .timeline-year { left: calc(50% + 1.75rem); }
+
 .timeline-year-button {
-    border: 0;
     cursor: pointer;
-    transition: background .25s ease, color .25s ease, transform .25s ease;
+    transition: background .25s ease, border-color .25s ease, box-shadow .25s ease, transform .25s ease;
 }
 
 .timeline-year-button:hover,
 .timeline-year-button:focus-visible {
-    background: var(--heritage-gold);
-    color: var(--heritage-ink);
-    outline: 2px solid var(--heritage-green);
+    border-color: var(--heritage-olive);
+    background: var(--heritage-olive);
+    color: #fff;
+    box-shadow: 0 .2rem .45rem rgba(31, 38, 31, .2);
+    outline: 2px solid var(--heritage-gold);
     outline-offset: 3px;
     transform: translateX(-.25rem);
-}
-
-.timeline-entry-left-branch .timeline-year {
-    right: auto;
-    left: calc(50% + 1.75rem);
 }
 
 .timeline-point {
@@ -435,6 +456,9 @@ h4, h5, h6, .h4, .h5, .h6 {
     background: var(--bs-primary);
     box-shadow: 0 0 0 5px #fff;
 }
+
+.timeline-entry-left .timeline-point { left: 15%; }
+.timeline-entry-right .timeline-point { right: 15%; }
 
 .timeline-entry-current .timeline-point {
     width: 1.35rem;
@@ -495,20 +519,16 @@ h4, h5, h6, .h4, .h5, .h6 {
 .timeline-detail-block { height: 100%; padding: 1.25rem; background: #f8f9fa; border-left: 4px solid var(--bs-primary); }
 
 @media (max-width: 575.98px) {
-    .village-timeline::before { left: 2.1rem; }
-    .timeline-entry { min-height: 5.3rem; justify-content: flex-start; padding-left: 4.2rem; }
-    .timeline-year { position: relative; right: auto; left: auto; min-width: 4.3rem; margin-left: 1.2rem; }
+    .village-timeline { padding: 1rem .4rem; }
+    .timeline-entry { min-height: 4.8rem; }
+    .timeline-entry::before { width: 14%; }
+    .timeline-year { min-width: 4.3rem; }
+    .timeline-entry-left .timeline-year { right: calc(50% + 1.3rem); }
+    .timeline-entry-right .timeline-year { left: calc(50% + 1.3rem); }
+    .timeline-entry-left .timeline-point { left: 14%; }
+    .timeline-entry-right .timeline-point { right: 14%; }
     .timeline-year-button:hover,
-    .timeline-year-button:focus-visible { transform: translateX(.25rem); }
-    .timeline-point { position: absolute; left: 1.6rem; }
-    .timeline-branch { left: 8.7rem; width: calc(100% - 9rem); padding: 0; justify-content: flex-start; transform: none; }
-    .timeline-entry-left-branch { min-height: 8rem; }
-    .timeline-entry-left-branch .timeline-branch { top: 4.7rem; left: 4.2rem; width: calc(100% - 5rem); }
-    .timeline-branch small { display: none; }
-    .timeline-branch-left:hover,
-    .timeline-branch-left:focus-visible,
-    .timeline-branch-right:hover,
-    .timeline-branch-right:focus-visible { transform: translateX(.25rem); }
+    .timeline-year-button:focus-visible { transform: none; }
 }
 /*** Village Timeline End ***/
 

@@ -49,6 +49,10 @@
 
     // Village timeline detail records - replace placeholders with verified village-history material.
     var timelineRecords = {
+        '2026': {
+            description: '[ADD HISTORICAL DESCRIPTION FOR 2026]',
+            image: '[ADD HISTORICAL IMAGE]', video: '[ADD HISTORICAL VIDEO]', audio: '[ADD HISTORICAL AUDIO]', related: '[ADD RELATED PEOPLE OR EVENTS]'
+        },
         '1920': {
             description: '[ADD HISTORICAL DESCRIPTION FOR 1920]',
             image: '[ADD HISTORICAL IMAGE]', video: '[ADD HISTORICAL VIDEO]', audio: '[ADD HISTORICAL AUDIO]', related: '[ADD RELATED PEOPLE OR EVENTS]'
@@ -120,6 +124,42 @@
         $('#timelineModalAudio').text(record.audio);
         $('#timelineModalRelated').text(record.related);
     });
+
+    function drawTimelineSnake() {
+        var timeline = document.querySelector('.village-timeline');
+        var path = timeline && timeline.querySelector('.timeline-snake path');
+
+        if (!timeline || !path) {
+            return;
+        }
+
+        var timelineBox = timeline.getBoundingClientRect();
+        var points = Array.prototype.map.call(timeline.querySelectorAll('.timeline-point'), function (point) {
+            var pointBox = point.getBoundingClientRect();
+            return {
+                x: pointBox.left - timelineBox.left + (pointBox.width / 2),
+                y: pointBox.top - timelineBox.top + (pointBox.height / 2)
+            };
+        });
+
+        if (points.length < 2) {
+            return;
+        }
+
+        var commands = ['M ' + points[0].x + ' ' + points[0].y];
+        for (var index = 1; index < points.length; index += 1) {
+            var previousPoint = points[index - 1];
+            var currentPoint = points[index];
+            var controlY = (previousPoint.y + currentPoint.y) / 2;
+            commands.push('C ' + previousPoint.x + ' ' + controlY + ', ' + currentPoint.x + ' ' + controlY + ', ' + currentPoint.x + ' ' + currentPoint.y);
+        }
+
+        path.setAttribute('d', commands.join(' '));
+        path.closest('svg').setAttribute('viewBox', '0 0 ' + timelineBox.width + ' ' + timelineBox.height);
+    }
+
+    drawTimelineSnake();
+    $(window).on('resize', drawTimelineSnake);
 
 
     // Testimonial carousel
