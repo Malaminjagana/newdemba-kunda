@@ -1,4 +1,57 @@
 
+/*** Heritage Color System ***/
+:root {
+    --heritage-green: #2F4F3A;
+    --heritage-olive: #6B7D5A;
+    --heritage-cream: #F5F5EF;
+    --heritage-ink: #1F261F;
+    --heritage-gold: #C9A227;
+    --bs-primary: var(--heritage-green);
+    --bs-secondary: var(--heritage-olive);
+    --bs-light: var(--heritage-cream);
+    --bs-dark: var(--heritage-ink);
+}
+
+body {
+    background-color: var(--heritage-cream);
+    color: var(--heritage-ink);
+}
+
+.text-primary { color: var(--heritage-green) !important; }
+.text-secondary { color: var(--heritage-olive) !important; }
+.text-dark { color: var(--heritage-ink) !important; }
+.bg-primary { background-color: var(--heritage-green) !important; }
+.bg-secondary { background-color: var(--heritage-olive) !important; }
+.bg-light { background-color: var(--heritage-cream) !important; }
+.border-primary { border-color: var(--heritage-olive) !important; }
+
+.btn-primary {
+    background-color: var(--heritage-green) !important;
+    border-color: var(--heritage-green) !important;
+    color: #fff !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+    background-color: var(--heritage-olive) !important;
+    border-color: var(--heritage-olive) !important;
+    color: #fff !important;
+}
+
+.btn-outline-primary {
+    border-color: var(--heritage-green) !important;
+    color: var(--heritage-green) !important;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus-visible {
+    background-color: var(--heritage-green) !important;
+    border-color: var(--heritage-green) !important;
+    color: #fff !important;
+}
+
+.bg-primary .text-dark { color: #fff !important; }
+
 /*** Spinner Start ***/
 
 #spinner {
@@ -94,13 +147,13 @@ h4, h5, h6, .h4, .h5, .h6 {
 }
 
 .btn.btn-primary:hover {
-    color: var(--bs-primary) !important;
+    color: #fff !important;
     background: var(--bs-dark) !important;
     border-color: var(--bs-dark) !important;
 }
 
 .btn.btn-dark:hover {
-    color: var(--bs-dark) !important;
+    color: #fff !important;
     background: var(--bs-primary) !important;
     border-color: var(--bs-primary) !important;
 }
@@ -228,7 +281,7 @@ h4, h5, h6, .h4, .h5, .h6 {
 
 .hero .new-demba-btn:hover span {
     color: #fff !important;
-    background: rgba(3, 169, 244, 0.8) !important;
+    background: rgba(47, 79, 58, 0.9) !important;
 }
 
 .hero-intro {
@@ -287,6 +340,158 @@ h4, h5, h6, .h4, .h5, .h6 {
 /*** Hero Header ***/
 
 
+/*** Village Timeline Start ***/
+.village-timeline-section {
+    background: linear-gradient(180deg, var(--heritage-cream) 0%, #fff 100%);
+}
+
+.village-timeline {
+    position: relative;
+    width: min(100%, 860px);
+    margin: 0 auto;
+    padding: 1rem 0;
+}
+
+.village-timeline::before {
+    position: absolute;
+    top: 1.8rem;
+    bottom: 1.8rem;
+    left: 50%;
+    width: 3px;
+    content: "";
+    background: var(--bs-dark);
+    transform: translateX(-50%);
+}
+
+.timeline-entry {
+    position: relative;
+    display: flex;
+    min-height: 5.8rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.timeline-year {
+    position: absolute;
+    right: calc(50% + 1.75rem);
+    min-width: 4rem;
+    padding: .35rem .7rem;
+    background: #fff;
+    color: var(--bs-dark);
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.timeline-year-button {
+    border: 0;
+    cursor: pointer;
+    transition: background .25s ease, color .25s ease, transform .25s ease;
+}
+
+.timeline-year-button:hover,
+.timeline-year-button:focus-visible {
+    background: var(--heritage-gold);
+    color: var(--heritage-ink);
+    outline: 2px solid var(--heritage-green);
+    outline-offset: 3px;
+    transform: translateX(-.25rem);
+}
+
+.timeline-entry-left-branch .timeline-year {
+    right: auto;
+    left: calc(50% + 1.75rem);
+}
+
+.timeline-point {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    border: 3px solid var(--bs-dark);
+    border-radius: 50%;
+    background: var(--bs-primary);
+    box-shadow: 0 0 0 5px #fff;
+}
+
+.timeline-entry-current .timeline-point {
+    width: 1.35rem;
+    height: 1.35rem;
+    background: var(--heritage-gold);
+    box-shadow: 0 0 0 6px var(--heritage-green), 0 0 0 11px #fff;
+}
+
+.timeline-branch {
+    position: absolute;
+    display: flex;
+    width: min(31vw, 235px);
+    min-height: 3.4rem;
+    align-items: center;
+    gap: .55rem;
+    border: 0;
+    background: transparent;
+    color: var(--bs-dark);
+    font-family: inherit;
+    text-align: left;
+    transition: color .25s ease, transform .25s ease;
+}
+
+.timeline-branch::before {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: 2px;
+    content: "";
+    background: var(--bs-dark);
+    transition: background .25s ease, height .25s ease;
+}
+
+.timeline-branch span,
+.timeline-branch small {
+    position: relative;
+    z-index: 1;
+    background: var(--heritage-cream);
+}
+
+.timeline-branch span { padding: .2rem .45rem; font-weight: 700; }
+.timeline-branch small { padding: .2rem .45rem; font-size: .76rem; }
+.timeline-branch-left { right: 50%; justify-content: flex-start; padding-right: 2rem; transform: translateX(-1rem); }
+.timeline-branch-right { left: 50%; justify-content: flex-end; padding-left: 2rem; transform: translateX(1rem); }
+
+.timeline-branch:hover,
+.timeline-branch:focus-visible { color: var(--bs-primary); outline: none; }
+.timeline-branch:hover::before,
+.timeline-branch:focus-visible::before { height: 3px; background: var(--bs-primary); }
+.timeline-branch-left:hover,
+.timeline-branch-left:focus-visible { transform: translateX(-1.35rem); }
+.timeline-branch-right:hover,
+.timeline-branch-right:focus-visible { transform: translateX(1.35rem); }
+
+.timeline-modal-content { border: 0; border-top: 5px solid var(--bs-primary); border-radius: 0; }
+.timeline-media-placeholder { display: grid; min-height: 11rem; place-items: center; border: 2px dashed rgba(31, 38, 31, .35); background: var(--heritage-cream); color: var(--heritage-olive); font-weight: 700; letter-spacing: .04em; }
+.timeline-video-placeholder { min-height: 9rem; background: #e9f0ea; }
+.timeline-detail-block { height: 100%; padding: 1.25rem; background: #f8f9fa; border-left: 4px solid var(--bs-primary); }
+
+@media (max-width: 575.98px) {
+    .village-timeline::before { left: 2.1rem; }
+    .timeline-entry { min-height: 5.3rem; justify-content: flex-start; padding-left: 4.2rem; }
+    .timeline-year { position: relative; right: auto; left: auto; min-width: 4.3rem; margin-left: 1.2rem; }
+    .timeline-year-button:hover,
+    .timeline-year-button:focus-visible { transform: translateX(.25rem); }
+    .timeline-point { position: absolute; left: 1.6rem; }
+    .timeline-branch { left: 8.7rem; width: calc(100% - 9rem); padding: 0; justify-content: flex-start; transform: none; }
+    .timeline-entry-left-branch { min-height: 8rem; }
+    .timeline-entry-left-branch .timeline-branch { top: 4.7rem; left: 4.2rem; width: calc(100% - 5rem); }
+    .timeline-branch small { display: none; }
+    .timeline-branch-left:hover,
+    .timeline-branch-left:focus-visible,
+    .timeline-branch-right:hover,
+    .timeline-branch-right:focus-visible { transform: translateX(.25rem); }
+}
+/*** Village Timeline End ***/
+
+
 /*** About Start ***/
 .about a.btn.btn-light:hover {
     background: var(--bs-dark) !important;
@@ -342,9 +547,9 @@ h4, h5, h6, .h4, .h5, .h6 {
     margin-top: .8rem;
     padding: .8rem 1rem;
     border-radius: 1rem;
-    background: linear-gradient(135deg, rgba(22,61,47,.92), rgba(31,102,75,.98));
-    box-shadow: 0 12px 25px rgba(15, 30, 25, .12);
-    color: #f8f4e9;
+    background: linear-gradient(135deg, var(--heritage-green), var(--heritage-olive));
+    box-shadow: 0 12px 25px rgba(31, 38, 31, .12);
+    color: var(--heritage-cream);
     font-weight: 700;
     font-size: 1rem;
     line-height: 1.3;
@@ -365,7 +570,7 @@ h4, h5, h6, .h4, .h5, .h6 {
 }
 
 .heritage-card:focus-visible {
-    outline: 3px solid rgba(13,110,253,.35);
+    outline: 3px solid rgba(47, 79, 58, .45);
     outline-offset: 3px;
 }
 
@@ -527,7 +732,7 @@ h4, h5, h6, .h4, .h5, .h6 {
 
 .team .team-item:hover .team-content {
     opacity: 1;
-    background: rgba(241, 193, 82, .7);
+    background: rgba(47, 79, 58, .78);
 }
 /*** Team End ***/
 

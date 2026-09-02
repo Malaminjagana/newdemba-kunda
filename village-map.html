@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore placeholder location and timeline records for New Demba Kunda Village history.">
+    <title>Village History & Interactive Map | New Demba Kunda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha512-Zcn6bjR/8RZbLEpLIeOwNtzREBAJnUKESxces60Mpoj+2okopSAcSUIUOseddDm0cxnGQzxIR7vJgsLZbdLE3w==" crossorigin="">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/village-map.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container-fluid fixed-top bg-white shadow-sm">
+        <div class="container">
+            <nav class="navbar navbar-light navbar-expand-lg py-3">
+                <a href="index.html" class="navbar-brand"><h1 class="mb-0">NEW <span class="text-primary">DEMBA</span> KUNDA VILLAGE</h1></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars text-primary"></span></button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav ms-lg-auto mx-xl-auto">
+                        <a href="index.html" class="nav-item nav-link">Home</a>
+                        <a href="about.html" class="nav-item nav-link">About</a>
+                        <div class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">History</a><div class="dropdown-menu m-0 rounded-0"><a href="Archive.html" class="dropdown-item">Village Archive</a><a href="timeline.html" class="dropdown-item">Timeline</a><a href="village-map.html" class="dropdown-item active">Village Map</a><a href="family.html" class="dropdown-item">Families</a><a href="forest.html" class="dropdown-item">Forests</a></div></div>
+                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        <a href="event.html" class="nav-item nav-link">Events</a>
+                    </div>
+                    <a href="#" class="btn btn-primary py-2 px-4 d-none d-xl-inline-block">Donate</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <header class="village-history-hero">
+        <div class="container"><p class="history-eyebrow mb-3">Digital Heritage Archive</p><h1 class="mb-3">ABOUT NEW DEMBA KUNDA VILLAGE</h1><p class="lead mb-0">"Allah Help Those Who Help Themselves"</p></div>
+    </header>
+
+    <main>
+        <section class="history-explorer py-5" aria-labelledby="explorer-title">
+            <div class="container"><div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4"><div><p class="text-primary text-uppercase fw-bold mb-2">Past &amp; Present</p><h2 id="explorer-title" class="mb-0">Explore places and their connected records</h2></div><button type="button" class="btn btn-outline-dark" data-show-all-events><i class="fa fa-stream me-2" aria-hidden="true"></i>Show all timeline entries</button></div>
+                <div class="row g-4 history-workspace"><div class="col-xl-8"><div class="history-map-frame"><div class="history-map-title"><strong>New Demba Kunda Village Map</strong><small>Choose a marker to explore its archive</small></div><div id="village-map" data-village-map role="region" aria-label="Interactive OpenStreetMap of New Demba Kunda Village"></div><div class="history-map-fallback" data-map-fallback hidden><div class="heritage-map-stage" data-map-stage><div class="schematic-map-heading"><span><i class="fa fa-map-marked-alt me-2" aria-hidden="true"></i>Interactive Village Heritage Map</span><small>Illustrative placeholder positions - replace with verified coordinates later</small></div><div class="history-schematic-markers" data-schematic-map aria-label="Interactive New Demba Kunda Village heritage map"></div><div class="schematic-map-legend" aria-label="Map marker legend"><span><i class="fa fa-mosque" aria-hidden="true"></i>Mosques</span><span><i class="fa fa-users" aria-hidden="true"></i>Community</span><span><i class="fa fa-home" aria-hidden="true"></i>Families</span><span><i class="fa fa-user" aria-hidden="true"></i>People</span><span><i class="fa fa-school" aria-hidden="true"></i>Schools</span></div></div></div><div class="heritage-map-controls" aria-label="Map zoom controls"><button type="button" data-map-zoom-in aria-label="Zoom in">+</button><button type="button" data-map-zoom-out aria-label="Zoom out">−</button></div><aside class="history-panel" data-history-panel aria-live="polite"></aside></div><div class="location-directory mt-4" data-location-directory aria-label="Village location directory"></div></div><aside class="col-xl-4 history-timeline-aside" aria-labelledby="timeline-title"><div class="timeline-heading"><p class="text-primary text-uppercase fw-bold mb-2">Connected history timeline</p><h2 id="timeline-title" class="mb-2">Historical events</h2><p class="mb-0 text-muted small">Choose an event to locate its place and open the archive record.</p></div><div class="history-timeline" data-timeline aria-label="Historical event timeline"></div></aside></div>
+            </div>
+        </section>
+        <section class="history-book-section"><div class="container"><div class="history-book-callout"><p class="text-primary text-uppercase fw-bold mb-2">Explore the History Book</p><h2 class="mb-3">Discover the stories, people, traditions and events that shaped New Demba Kunda.</h2><p class="mb-4">Location and event panels include placeholder chapter, page, and section references ready to connect to a future protected reader.</p><a href="Archive.html" class="btn btn-primary py-3 px-4">Read the History Book <i class="fa fa-arrow-right ms-2" aria-hidden="true"></i></a></div></div></section>
+    </main>
+    <footer class="container-fluid footer py-4"><div class="container"><div class="row align-items-center"><div class="col-md-7"><h4 class="text-light mb-1">NEW <span class="text-primary">DEMBA</span> KUNDA VILLAGE</h4><p class="text-secondary mb-0">Preserving verified village history with care.</p></div><div class="col-md-5 text-md-end mt-3 mt-md-0"><a href="index.html" class="text-body">Return to Home</a></div></div></div></footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha512-BwHfrr4c9kmRkLw6iXFdzcdWV/PGkVgiIyIWLLlTSXzWQzxuSg4DiQUCpauz/EWjgk5TYQqX/kvn9pG1NpYfqg==" crossorigin=""></script>
+    <script src="js/village-map-data.js"></script>
+    <script src="js/village-map.js"></script>
+</body>
+</html>

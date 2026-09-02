@@ -47,6 +47,80 @@
         return false;
     });
 
+    // Village timeline detail records - replace placeholders with verified village-history material.
+    var timelineRecords = {
+        '1920': {
+            description: '[ADD HISTORICAL DESCRIPTION FOR 1920]',
+            image: '[ADD HISTORICAL IMAGE]', video: '[ADD HISTORICAL VIDEO]', audio: '[ADD HISTORICAL AUDIO]', related: '[ADD RELATED PEOPLE OR EVENTS]'
+        },
+        '1930': {
+            description: '[ADD HISTORICAL DESCRIPTION FOR 1930]',
+            image: '[ADD HISTORICAL IMAGE]', video: '[ADD HISTORICAL VIDEO]', audio: '[ADD HISTORICAL AUDIO]', related: '[ADD RELATED PEOPLE OR EVENTS]'
+        },
+        '1940': {
+            description: '[ADD HISTORICAL DESCRIPTION FOR 1940]',
+            image: '[ADD HISTORICAL IMAGE]',
+            video: '[ADD HISTORICAL VIDEO]',
+            audio: '[ADD HISTORICAL AUDIO]',
+            related: '[ADD RELATED PEOPLE OR EVENTS]'
+        },
+        '1950': {
+            description: '[ADD HISTORICAL DESCRIPTION FOR 1950]',
+            image: '[ADD HISTORICAL IMAGE]', video: '[ADD HISTORICAL VIDEO]', audio: '[ADD HISTORICAL AUDIO]', related: '[ADD RELATED PEOPLE OR EVENTS]'
+        },
+        '1960': {
+            description: '[ADD HISTORICAL DESCRIPTION FOR 1960]',
+            image: '[ADD HISTORICAL IMAGE]', video: '[ADD HISTORICAL VIDEO]', audio: '[ADD HISTORICAL AUDIO]', related: '[ADD RELATED PEOPLE OR EVENTS]'
+        },
+        '1970': {
+            description: '[ADD HISTORICAL DESCRIPTION FOR 1970]',
+            image: '[ADD HISTORICAL IMAGE]', video: '[ADD HISTORICAL VIDEO]', audio: '[ADD HISTORICAL AUDIO]', related: '[ADD RELATED PEOPLE OR EVENTS]'
+        },
+        '1980': {
+            description: '[ADD HISTORICAL DESCRIPTION FOR 1980]',
+            image: '[ADD HISTORICAL IMAGE]',
+            video: '[ADD HISTORICAL VIDEO]',
+            audio: '[ADD HISTORICAL AUDIO]',
+            related: '[ADD RELATED PEOPLE OR EVENTS]'
+        },
+        '1990': {
+            description: '[ADD HISTORICAL DESCRIPTION FOR 1990]',
+            image: '[ADD HISTORICAL IMAGE]', video: '[ADD HISTORICAL VIDEO]', audio: '[ADD HISTORICAL AUDIO]', related: '[ADD RELATED PEOPLE OR EVENTS]'
+        },
+        '2000': {
+            description: '[ADD HISTORICAL DESCRIPTION FOR 2000]',
+            image: '[ADD HISTORICAL IMAGE]', video: '[ADD HISTORICAL VIDEO]', audio: '[ADD HISTORICAL AUDIO]', related: '[ADD RELATED PEOPLE OR EVENTS]'
+        },
+        '2010': {
+            description: '[ADD HISTORICAL DESCRIPTION FOR 2010]',
+            image: '[ADD HISTORICAL IMAGE]', video: '[ADD HISTORICAL VIDEO]', audio: '[ADD HISTORICAL AUDIO]', related: '[ADD RELATED PEOPLE OR EVENTS]'
+        },
+        '2020': {
+            description: '[ADD HISTORICAL DESCRIPTION FOR 2020]',
+            image: '[ADD HISTORICAL IMAGE]',
+            video: '[ADD HISTORICAL VIDEO]',
+            audio: '[ADD HISTORICAL AUDIO]',
+            related: '[ADD RELATED PEOPLE OR EVENTS]'
+        }
+    };
+
+    $('#timelineDetailModal').on('show.bs.modal', function (event) {
+        var trigger = $(event.relatedTarget);
+        var year = trigger.data('timeline-record');
+        var record = timelineRecords[year];
+
+        if (!record) {
+            return;
+        }
+
+        $('#timelineModalYear').text(year);
+        $('#timelineModalDescription').text(record.description);
+        $('#timelineModalImage').text(record.image);
+        $('#timelineModalVideo').text(record.video);
+        $('#timelineModalAudio').text(record.audio);
+        $('#timelineModalRelated').text(record.related);
+    });
+
 
     // Testimonial carousel
     $(".testimonial-carousel").owlCarousel({
