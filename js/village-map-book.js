@@ -1,0 +1,35 @@
+(function () {
+    'use strict';
+    const layers = {
+        neighbourhoods: { label: 'Neighbourhoods', icon: 'fa-home', entries: [
+            ['DENGHENA / DENGHENAN KOTI', 'Central neighbourhood of the Central Mosque, with Jaganara and Numuyel Jaganara compounds. Its boundaries are recorded through Drammeh Kunda, Sakhoneh Kunda, Khonteh Kunda, Sisokho Kunda, Billen Chakeya and Babuchiya.'], ['BANTAN KAANU', 'Southern neighbourhood named after Bantan Penda Camara of Kagorta Khore. It extends toward Jidda Moudou; its western part is known as Jimba.'], ['CHARAPPU', 'Northern neighbourhood of Khonteh Kunda and the Traditional High School Majlis, extending toward Old Demba Kunda.']
+        ] },
+        water: { label: 'Wells & Water', icon: 'fa-tint', entries: [
+            ['KHUBAN GHEDE', 'First village well, dug by Foday Jagana at Seyinka field west of Central Mosque; its water is described as salty.'], ['DARBON GHEDE', 'East-side well dug by Sikhou Darbo, with fresh water; rebuilt by Sharif Jagana.'], ['KABAN GHEDE', 'Beside Kaba Kunda south of Central Mosque, dug by Nangou Kaba.'], ['BANTAN GHEDE', 'Southwest opposite Kagorta Khore, dug by Bantan Penda Camara.'], ['MAYISIN GHEDE', 'Traditional High School Majlis well, dug by Kharamoko Hawa Khonteh.'], ['JUMAN GHEDE', 'Central Mosque well, dug by Sharif Jagana (Sirihi).'], ['GARANKAN GHEDE', 'South next to Fayinkeh Kunda, dug by Salim Fayinkeh.'], ['BALLAN KHOLE AND STREAMS', 'Includes Ballan Khole, Ba Malalin Khare, Khari Khulleh, Yelin Debe, Kholi Lemmeh, Kholi Khore and Hayiren Khole. Kholi Khore had a bridge built around 1966.'], ['MODERN BOREHOLE', 'In Jaganara Khore: two 60,000-litre tanks and 74 taps. Pumping began 29 October 2004; the system was usable 30 October 2004.']
+        ] },
+        kura: { label: 'Public Spaces Kura', icon: 'fa-users', entries: [
+            ['SEYINKA FIELD', 'Largest public space west of Central Mosque. Seyinkan Kura stands at its southern corner next to Khuban Ghede.'], ['SALUMENTERE FIELD', 'At the southwest entrance of Babuchiya compound; the source records three mango trees and five debalinghe trees.'], ['MISIDIN KURA', 'West of Central Mosque, where elders rested and waited for prayers, funeral meetings and Friday sermon translation in Soninke until 2014.'], ['SEYINKAN KURA', 'Southern part of Seyinka field next to Khuban Ghede well.'], ['MAMADIN KURA', 'Western end of Seyinka field, named after Mamadi Bouba Kurubally and recorded as the most popular kura.'], ['KABAN KURA', 'South of Central Mosque next to Kaban Ghede, with mango and dibalinghe trees.'], ['BANTAN KURA', 'At the entrance of Kagorta Khore opposite Bantan Ghede, shaded by an Alimeti tree.'], ['CHARAPPUN KURA', 'At the northern entrance of Waggeh Kunda compound in Charappu.']
+        ] },
+        extinct: { label: 'Extinct Villages', icon: 'fa-landmark', entries: [
+            ['TENKINAM', 'West on Gambisara road; associated with Samba Teneh, with mango, baobab and taba trees.'], ['TOBALI KUNDA', 'South on Jidda Moudou road; associated with Demba Nyanjo, with an old well and two taba trees.'], ['JINNA WURUNDE', 'South after Tobali Kunda; associated with Saidou Kaara.'], ['BIRAIMA KAARA', 'Southeast between New Demba Kunda and Mampatayeli; two wells and mango, taba and baobab trees remain.'], ['SIMBANOU', 'Southeast at Jalaja, associated with Bambadouga Jamiggeh.'], ['KOBA KAARA / DIYA KUYA', 'Southwest from Biraima Kaara.'], ['SIRIHIN KAARA / TUMBUN LEMMEH', 'South next to Jinna Wurunde, associated with Bakary Hydara, son of Ousman Hydara; now farmland.'], ['TUMBUN KHORE / MANSA MINAN TUMBUNGHE', 'South next to Sirihin Kaara.'], ['LAMBIDOU', 'South at the junction toward Lambatara and Jidda Moudou.'], ['BANTIN KOTO', 'South next to Lambidou, associated with Tamba Sanyang.']
+        ] },
+        outgrowth: { label: 'Outgrowth Villages', icon: 'fa-route', entries: [
+            ['DIBIROU', 'About 10 km southeast; developed around 1937 by Kase Khore Jagana.'], ['JIDDA MOUDOU', 'About 6 km south; developed around 1946 by Moudou Tunkara.'], ['SIMBI', 'About 12 km southwest; developed around 1950 by Foday Jankeh Jagana.'], ['MARRY KAARA', 'About 10 km southwest; developed around 1949 by Marry Jebo.']
+        ] }
+    };
+    const frame = document.querySelector('.history-map-frame');
+    if (!frame) return;
+    let active = 'neighbourhoods';
+    let selected = null;
+    function escapeHtml(value) { return String(value).replace(/[&<>'"]/g, function (character) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[character]; }); }
+    function render() {
+        const layer = layers[active];
+        const controls = Object.keys(layers).map(function (key) { return '<button type="button" class="village-layer-toggle' + (key === active ? ' is-active' : '') + '" data-layer="' + key + '" aria-pressed="' + (key === active) + '"><i class="fa ' + layers[key].icon + '" aria-hidden="true"></i><span>' + layers[key].label + '</span></button>'; }).join('');
+        const pins = layer.entries.map(function (entry, index) { const x = 12 + (index * 29) % 76; const y = 20 + (index * 23) % 61; return '<button type="button" class="book-map-pin' + (selected === index ? ' is-active' : '') + '" data-pin="' + index + '" style="left:' + x + '%;top:' + y + '%" aria-label="Open ' + escapeHtml(entry[0]) + '"><i class="fa ' + layer.icon + '" aria-hidden="true"></i><span>' + escapeHtml(entry[0]) + '</span></button>'; }).join('');
+        const current = selected === null ? '<div class="book-map-empty"><i class="fa fa-map-marked-alt" aria-hidden="true"></i><p>Select a marker to read the archival record.</p></div>' : '<div class="book-map-record"><p class="museum-kicker">' + escapeHtml(layer.label) + '</p><h2>' + escapeHtml(layer.entries[selected][0]) + '</h2><p>' + escapeHtml(layer.entries[selected][1]) + '</p><p class="book-map-source"><strong>Source:</strong> The History of New Demba Kunda, Chapter Four</p></div>';
+        frame.innerHTML = '<div class="book-map" role="region" aria-label="Illustrative village history map"><div class="book-map-header"><strong>New Demba Kunda Village Map</strong><small>Illustrative positions; historical names and descriptions are source-bound.</small></div><div class="book-map-layers" aria-label="Map layers">' + controls + '</div><div class="book-map-stage"><div class="book-map-terrain" aria-hidden="true"></div>' + pins + '</div><aside class="book-map-panel" aria-live="polite">' + current + '</aside></div>';
+        frame.querySelectorAll('[data-layer]').forEach(function (button) { button.addEventListener('click', function () { active = button.dataset.layer; selected = null; render(); }); });
+        frame.querySelectorAll('[data-pin]').forEach(function (button) { button.addEventListener('click', function () { selected = Number(button.dataset.pin); render(); }); });
+    }
+    render();
+}());
