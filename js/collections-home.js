@@ -8,15 +8,17 @@
         if (!grid || !collection) return;
         grid.innerHTML = collection.records.map(function (record) {
             const isFamily = key === 'families';
-            const id = isFamily ? record.id : record[0];
-            const name = isFamily ? record.name : record[1];
-            const summary = isFamily ? record.shortDescription : record[4];
-            const image = isFamily ? '<img src="' + escapeHtml(record.heroImage) + '" alt="' + escapeHtml(record.heroAlt) + '" loading="lazy">' : '<i class="fa ' + collection.icon + '" aria-hidden="true"></i>';
-            return '<div class="col-md-6 col-xl-4"><a href="' + page + '?' + key + '=' + encodeURIComponent(id) + '" class="heritage-card" aria-label="Read the record for ' + escapeHtml(name) + '"><span class="collection-home-icon' + (isFamily ? ' collection-home-image' : '') + '">' + image + '</span><div class="heritage-card-label-bar"><span>' + escapeHtml(name) + '</span><small>' + escapeHtml(summary) + '</small></div></a></div>';
+            const isPond = key === 'ponds';
+            const id = isFamily || isPond ? record.id : record[0];
+            const name = isFamily || isPond ? record.name : record[1];
+            const summary = isFamily || isPond ? record.shortDescription : record[4];
+            const image = isFamily || isPond ? (record.image ? '<img src="' + escapeHtml(record.image) + '" alt="' + escapeHtml(record.imageAlt || record.name + ' historical photograph') + '" loading="lazy">' : '<i class="fa ' + collection.icon + '" aria-hidden="true"></i><span>Historical image coming soon</span>') : '<i class="fa ' + collection.icon + '" aria-hidden="true"></i>';
+            return '<div class="col-md-6 col-xl-4"><a href="' + page + '?' + key + '=' + encodeURIComponent(id) + '" class="heritage-card" aria-label="Read the record for ' + escapeHtml(name) + '"><span class="collection-home-icon' + (isFamily || isPond ? ' collection-home-image' + (record.image ? '' : ' has-fallback') : '') + '">' + image + '</span><div class="heritage-card-label-bar"><span>' + escapeHtml(name) + '</span><small>' + escapeHtml(summary) + '</small></div></a></div>';
         }).join('');
-        grid.querySelectorAll('.collection-home-image img').forEach(function (image) { image.addEventListener('error', function () { image.closest('.collection-home-image').classList.add('has-fallback'); }); });
+        grid.querySelectorAll('.collection-home-image img').forEach(function (image) { image.addEventListener('error', function () { image.remove(); image.closest('.collection-home-image').classList.add('has-fallback'); }); });
     }
     renderCollection('families', 'families', 'families.html');
     renderCollection('farming-places', 'farming', 'farming.html');
     renderCollection('wells', 'wells', 'wells.html');
+    renderCollection('ponds', 'ponds', 'ponds.html');
 }());

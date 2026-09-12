@@ -9,10 +9,23 @@ const museumCollections = {
     ] },
     wells: { label: 'New Demba Kunda Wells', title: 'Explore Our Village Water Sources', subtitle: 'Discover the documented wells, stream crossings and water infrastructure that sustained village life.', icon: 'fa-tint', source: 'The History of New Demba Kunda, Chapter Four, Section Six, pages 280-287', records: [
         ['khuban-ghede', 'KHUBAN GHEDE', 'Seyinka field, west of Central Mosque', 'The first well in the village, dug by founder Foday Jagana in the early 20th century. Its water is described as salty.', 'First well, dug by the founder'], ['darbon-ghede', 'DARBON GHEDE', 'East side of the village', 'Dug by Sikhou Darbo of Darbo Kunda. The source describes it as an old well with fresh water, rebuilt by Sharif Jagana (Sirihi).', 'Old fresh-water well'], ['kaban-ghede', 'KABAN GHEDE', 'Beside Kaba Kunda, south of Central Mosque', 'Dug by Nangou Kaba. The source records that its water was fresh and later changed.', 'Well beside Kaba Kunda'], ['bantan-ghede', 'BANTAN GHEDE', 'Southwest, opposite Kagorta Khore', 'Dug by Bantan Penda Camara and named after him; the source describes the water as fresh.', 'Named for Bantan Penda Camara'], ['mayisin-ghede', 'MAYISIN GHEDE', 'Traditional High School', 'Dug by Sheikh Kharamoko Hawa Khonteh, head of Khonteh Kunda.', 'Traditional school well'], ['juman-ghede', 'JUMAN GHEDE', 'Next to Central Mosque', 'Dug by Sharif Jagana (Sirihi).', 'Central Mosque well'], ['garankan-ghede', 'GARANKAN GHEDE', 'South, next to Fayinkeh Kunda', 'Dug by Salim Fayinkeh, father of Kaw Fayinkeh.', 'Well beside Fayinkeh Kunda'], ['ballan-khole', 'BALLAN KHOLE AND STREAM CROSSINGS', 'Village watercourses', 'The source records Ballan Khole, Ba Malalin Khare and Kholi Khore, including a crocodile incident involving Malali Njie and a bridge at Kholi Khore built around 1966.', 'Watercourses and a c. 1966 bridge'], ['water-project-2004', 'MODERN WATER PROJECT', 'Borehole in Jaganara Khore', 'Two 60,000-litre tanks and 74 taps were installed. Pumping began Friday 14 Ramadan 1425H / 29 October 2004; the system was usable 30 October 2004, funded by expatriates and government.', 'Borehole, tanks and 74 taps']
+    ] },
+    ponds: { label: 'New Demba Kunda Ponds', title: 'Ponds of New Demba Kunda', subtitle: 'Explore documented ponds and water features connected to the village landscape.', icon: 'fa-water', source: 'The History of New Demba Kunda', records: [
+        { id: 'dala-gilleh', name: 'Dala Gilleh', description: '', shortDescription: 'Documented pond and forest area.', image: '', imageAlt: 'Historical image coming soon for Dala Gilleh', mapLocationId: 'dala-gilleh' },
+        { id: 'hurunkun-dala', name: 'Hurunkun Dala', description: '', shortDescription: 'Documented village pond.', image: '', imageAlt: 'Historical image coming soon for Hurunkun Dala', mapLocationId: 'hurunkun-dala' },
+        { id: 'dala-lemmeh', name: 'Dala Lemmeh', description: '', shortDescription: 'Documented village pond.', image: '', imageAlt: 'Historical image coming soon for Dala Lemmeh', mapLocationId: 'dala-lemmeh' },
+        { id: 'jamban-dala', name: 'Jamban Dala', description: '', shortDescription: 'Documented village pond.', image: '', imageAlt: 'Historical image coming soon for Jamban Dala', mapLocationId: 'jamban-dala' },
+        { id: 'simakhan-dala', name: 'Simakhan Dala', description: '', shortDescription: 'Documented village pond.', image: '', imageAlt: 'Historical image coming soon for Simakhan Dala', mapLocationId: 'simakhan-dala' },
+        { id: 'kumma-kejugun-dala', name: 'Kumma Kejugun Dala', description: '', shortDescription: 'Documented village pond.', image: '', imageAlt: 'Historical image coming soon for Kumma Kejugun Dala', mapLocationId: 'kumma-kejugun-dala' },
+        { id: 'dala-khore', name: 'Dala Khore', description: '', shortDescription: 'Documented village pond.', image: '', imageAlt: 'Historical image coming soon for Dala Khore', mapLocationId: 'dala-khore' },
+        { id: 'sikhou-hounen-dala', name: 'Sikhou Hounen Dala', description: '', shortDescription: 'Documented village pond.', image: '', imageAlt: 'Historical image coming soon for Sikhou Hounen Dala', mapLocationId: 'sikhou-hounen-dala' },
+        { id: 'khilin-dala', name: 'Khilin Dala', description: '', shortDescription: 'Documented village pond.', image: '', imageAlt: 'Historical image coming soon for Khilin Dala', mapLocationId: 'khilin-dala' },
+        { id: 'saban-dala', name: 'Saban Dala', description: '', shortDescription: 'Documented village pond.', image: '', imageAlt: 'Historical image coming soon for Saban Dala', mapLocationId: 'saban-dala' },
+        { id: 'khumba-janken-dala', name: 'Khumba Janken Dala', description: '', shortDescription: 'Documented village pond.', image: '', imageAlt: 'Historical image coming soon for Khumba Janken Dala', mapLocationId: 'khumba-janken-dala' }
     ] }
 };
 
-/* Each family image can be replaced independently when an authenticated photograph is available. */
+/* Each family image can be added independently when an authenticated photograph is available. */
 museumCollections.families.records = museumCollections.families.records.map(function (record) {
     const neighbourhoods = {
         'jaganara-khore': 'Denghena / Denghenan Koti',
@@ -28,11 +41,78 @@ museumCollections.families.records = museumCollections.families.records.map(func
         neighborhood: neighbourhoods[record[0]] || 'Neighbourhood awaiting verification',
         description: record[3],
         shortDescription: record[4],
-        heroImage: 'img/hero.jpg',
-        heroAlt: 'New Demba Kunda village landscape - temporary family image placeholder',
+        image: '',
         source: museumCollections.families.source,
         relatedPeople: [],
         relatedPlaces: [],
         mapLocationId: record[0] + '-compound'
     };
 });
+
+/* The book's unit of record is the numbered compound, so repeated family names remain separate. */
+(function () {
+    const compoundNames = [
+        'JAGANARA KHORE', 'BILLEN CHAKEYA', 'BABUCHIYA', 'DUKUREH FAMILY / DUKURELLA',
+        'JABBY KUNDA FAMILY', 'HYDARA KUNDA FAMILY', 'NUMUYEL JAGANARA', 'KHONTEH KUNDA FAMILY',
+        'KAGORTA KHORE', 'SAKHONEH KUNDA (KUSAN TAGO)', 'SABALLY KUNDA', 'KABA KUNDA LEMMEH',
+        'KABA KUNDA KHORE', 'DARBO KUNDA', 'DUKURELLA — HAJIN DUKUREH AND HIS BROTHERS',
+        'DRAMMEH KUNDA', 'YAFA KUNDA — NEXT TO JEJU KUNDA', 'JEJU KUNDA',
+        'JABBY KUNDA — DOMEH JABBY AND KIBILLY JABBY FAMILY', "DUKURELLA — KALATO DUKUREH'S FAMILY",
+        "HYDARA KUNDA — SHARIF HYDARA'S FAMILY", "SISOKHO KUNDA — KINDA SISOKHO'S FAMILY",
+        "CAMARA KUNDA — MOUHAMMAD KHUMBA CAMARA'S FAMILY", 'DUKKARA KUNDA', 'JANKHA KUNDA',
+        'FAYINKEH KUNDA', 'MARRA KUNDA', "JALLOW KUNDA — SAINY JALLOW'S FAMILY",
+        'SIDIBEH KUNDA - CHILDREN OF NDUNGU KURUBALLY', 'WAGGEH KUNDA KHORE', 'WAGGEH KUNDA LEMMEH',
+        "FOFANA KUNDA — ALI FOFANA'S FAMILY", 'KEBELA', 'GHEREWOU KUNDA', 'CAMARA KUNDA',
+        'SAMBOU KUNDA', "SIMAKHA KUNDA — SAJA SIMAKHA'S FAMILY", 'YAFA KUNDA — BESIDE SIMAKHA KUNDA',
+        'TOURAY KUNDA — JONGANOU', 'MAGASI KUNDA', "KURUBALLY KUNDA — MAMADI BOUBA KURUBALLY'S FAMILY",
+        'CAMARA KUNDA — NEXT TO NUMUYEL JAGANARA', 'TOURAY KUNDA — NEXT TO NUMUYEL JAGANARA',
+        'SIMAKHA KUNDA — IN JIMBA', "KHONTEH KUNDA — LEMMEH HALIMA KHONTEH'S FAMILY",
+        'NJIE KUNDA — IN JIMBA', 'KEITA KUNDA / KONATE KUNDA — IN JIMBA', 'TAMBADOU KUNDA',
+        'FOFANA KUNDA', 'SANYANG KUNDA', 'DAMBELE KUNDA', 'BERTEH KUNDA', 'DAMBELE KUNDA',
+        'SAKHANOKHORA - MALAMIN AND JINDE FAMILY', 'CAMARA KUNDA - KAGORTA OBAYI', 'JAMIGGERA',
+        "KHONTEH KUNDA — MODY NYINA KHONTEH'S FAMILY", 'MAKHANERA KUNDA', 'JALLOW FAMILY',
+        'JAWARA FAMILY', "KHONTEH KUNDA — CHIMA KHONTEH'S FAMILY",
+        "CAMARA KUNDA — WUJARI KANNI CAMARA'S FAMILY", "SIDIBEH KUNDA — DARBI SIDIBEH'S FAMILY",
+        "KHONTEH KUNDA — PA BUNA KHONTEH'S COMPOUND", "FOFANA KUNDA — IBRAHIMA FOFANA'S COMPOUND",
+        "SISOKHO KUNDA - BOULLY SISOKHO'S FAMILY", "JAWO KUNDA - SIKKA JAWO AND SAMBA JAWO'S FAMILIES",
+        'SINGHATEH KUNDA', "NJIE KUNDA — JULA NJIE'S FAMILY", 'HATTY KUNDA / HYDARA KUNDA',
+        'DUKURELLA', 'JABBY KUNDA — BESIDE SABALLY KUNDA', 'KEITA KUNDA', 'SIDIBEH KUNDA',
+        "KURUBALLY KUNDA — DANDA KURUBALLY'S FAMILY", 'SIDIBEH KUNDA — BESIDE BAKHAGA KUNDA',
+        'BAKHAGA KUNDA', "KURUBALLY KUNDA — BILAL TENEH'S FAMILY", "CAMARA KUNDA — ALI CAMARA'S FAMILY",
+        "DAMBELE KUNDA — BILAL DAMBELE'S FAMILY", 'DAMBELE KUNDA', 'SAKHANOKHORA',
+        "JAWO KUNDA — BAYORO JAWO'S FAMILY"
+    ];
+    const legacyMapIds = [
+        'jaganara-khore-compound', 'billen-chakeya-compound', 'babuchiya-compound', 'dukurella-compound',
+        'jabby-kunda-compound', 'hydara-kunda-compound', 'numuyel-jaganara-compound', 'khonteh-kunda-compound',
+        'kagorta-khore-compound', 'sakhoneh-kunda-compound', 'sabally-kunda-compound', 'kaba-kunda-lemmeh-compound',
+        'kaba-kunda-khore-compound', 'darbo-kunda-compound', 'drammeh-kunda-compound'
+    ];
+    const sharedCompoundNumbers = {
+        35: [36], 36: [35], 42: [43], 43: [42], 48: [49], 49: [48],
+        50: [51], 51: [50], 52: [53], 53: [52], 59: [60], 60: [59],
+        67: [], 70: [71], 71: [70], 73: [74], 74: [73], 81: [82], 82: [81]
+    };
+    const existingByName = {};
+    museumCollections.families.records.forEach(function (record) { existingByName[record.name] = record; });
+    museumCollections.families.records = compoundNames.map(function (name, index) {
+        const number = index + 1;
+        const existing = existingByName[name];
+        const stableId = 'compound-' + String(number).padStart(3, '0');
+        return {
+            id: stableId,
+            familyId: stableId,
+            name: name,
+            compoundNumber: 'Compound No. ' + number,
+            neighborhood: existing ? existing.neighborhood : 'Neighbourhood awaiting verification',
+            description: existing ? existing.description : '',
+            shortDescription: existing ? existing.shortDescription : 'Documented compound record',
+            image: '',
+            source: museumCollections.families.source,
+            relatedPeople: existing ? existing.relatedPeople : [],
+            relatedPlaces: existing ? existing.relatedPlaces : [],
+            sharedCompoundNumbers: sharedCompoundNumbers[number] || [],
+            mapLocationId: legacyMapIds[index] || stableId + '-map'
+        };
+    });
+}());

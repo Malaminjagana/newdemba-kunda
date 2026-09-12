@@ -23,7 +23,7 @@ There is no JSON, package manifest, build configuration, or server configuration
 | Farming Places | `farming.html`, `js/collections-data.js`, `js/collections.js`, `css/collections.css` | Active farming/forest collection: cards and modal/detail sheet. |
 | Wells | `wells.html`, `js/collections-data.js`, `js/collections.js`, `css/collections.css` | Active wells collection: cards and modal/detail sheet. |
 | Village Map | `village-map.html`, `js/village-map-data.js`, `js/village-map.js`, `css/village-map.css`, `css/village-map-leaflet.css` | Active interactive map, map directory, filters, map panel, and connected timeline. |
-| Images | `img/` | The only local media folder. It contains seven image files. |
+| Images | `img/`, `img/families/` | Existing site media remains in `img/`; approved family photographs belong in `img/families/`. |
 | Global styles | `css/bootstrap.min.css`, `css/style.css` | Bootstrap framework and shared site styling. |
 | Libraries | `lib/animate/`, `lib/easing/`, `lib/owlcarousel/`, `lib/waypoints/`, `lib/wow/` | Vendor libraries used by the older template pages. |
 | SCSS source | `scss/` | Bootstrap SCSS source tree. It is not the active custom styling source for the museum/map pages. |
@@ -37,7 +37,7 @@ There is no JSON, package manifest, build configuration, or server configuration
 - **Purpose:** Main structured data for the active Families, Farming Places, and Wells pages.
 - **Important content:** `museumCollections` has `families`, `farming`, and `wells` collections.
 - The families collection begins as compact arrays in `museumCollections.families.records`, then is converted into family objects using `.map(...)` at the bottom of the file.
-- The resulting family fields are `id`, `familyId`, `name`, `compoundNumber`, `neighborhood`, `description`, `shortDescription`, `heroImage`, `heroAlt`, `source`, `relatedPeople`, `relatedPlaces`, and `mapLocationId`.
+- The resulting family fields are `id`, `familyId`, `name`, `compoundNumber`, `neighborhood`, `description`, `shortDescription`, `image`, `source`, `relatedPeople`, `relatedPlaces`, and `mapLocationId`.
 
 **`js/history-data.js`**
 
@@ -136,7 +136,7 @@ The active source of truth is **`js/collections-data.js`**, in `museumCollection
 | Family ID | Raw record index `0`; resulting fields `id` and `familyId` |
 | Map location ID | Resulting `mapLocationId`, generated as `record[0] + '-compound'` |
 | Neighbourhood | `neighbourhoods` lookup in the conversion `.map(...)`; non-listed families receive `Neighbourhood awaiting verification` |
-| Family photograph | Resulting `heroImage` field; all active families currently use `img/hero.jpg` |
+| Family photograph | Resulting `image` field; empty until an approved compound photograph is assigned |
 | Family cards | `js/collections.js` (`grid.innerHTML`) and `css/collections.css` |
 | Family detail window/modal | `js/collections.js`, `showDetail(record)`, and `css/collections.css` |
 | Family-to-map connection | `familyId` / `mapLocationId` in `js/collections-data.js`, then dynamic family map records in `js/village-map-data.js` |
@@ -154,7 +154,7 @@ The active source of truth is **`js/collections-data.js`**, in `museumCollection
 - **Description field:** raw index `3`, exposed as `description`
 - **Family ID:** raw index `0`, `jaganara-khore`, exposed as `id` and `familyId`
 - **Map location ID:** generated `mapLocationId`, `jaganara-khore-compound`
-- **Current image:** generated `heroImage`, `img/hero.jpg`
+- **Current image:** generated `image`, empty until a compound photograph is assigned
 
 ### How to Edit a Family
 
@@ -177,16 +177,16 @@ The active source of truth is **`js/collections-data.js`**, in `museumCollection
 
 **D. Replace a family image**
 
-1. Put the approved local photograph in `img/`.
-2. In the conversion code at the bottom of `js/collections-data.js`, replace the shared `heroImage: 'img/hero.jpg'` behaviour with an image path selected per family record, or add a per-record image value and map it to `heroImage`.
-3. The active system already reads `record.heroImage`; no change to the card/modal logic is necessary once each object receives the correct path.
+1. Put the approved local photograph in `img/families/` using the compound number, for example `img/families/compound-001.webp`.
+2. In the generated family object in `js/collections-data.js`, change only its `image` field to `image: 'img/families/compound-001.webp'`.
+3. The same `record.image` value is used automatically by the Families page card, homepage family card, and detail/modal image. Leave it empty to keep the “Historical image coming soon” placeholder.
 
 **E. Add a new family**
 
 1. Add a new row to `museumCollections.families.records` with five values in this order: unique ID, displayed name, compound number, full description, short description.
 2. Add the ID to the `neighbourhoods` object in the conversion code if its neighbourhood is known.
 3. Ensure its generated `mapLocationId` is unique. The map automatically creates a matching Family Compound from every family object.
-4. Add a per-family photograph field if you have changed the shared image system to support it.
+4. Add an empty `image` field to the generated object; assign a photograph later using the image workflow above.
 
 **F. Remove a family**
 
@@ -196,14 +196,14 @@ The active source of truth is **`js/collections-data.js`**, in `museumCollection
 
 ## Family Image System
 
-- **Image folder:** `img/`
-- **Active family image field:** `heroImage` in the final family object created in `js/collections-data.js`.
-- **Current path:** Every active family uses the local path `img/hero.jpg`.
-- **Placeholder:** `heroAlt` explicitly calls it a “temporary family image placeholder.” The UI also displays “Historical image coming soon” if an image fails to load.
-- **Reuse:** All 34 active family records share `img/hero.jpg`, so it is a temporary shared image rather than individual family photography.
+- **Image folder:** `img/families/`
+- **Active family image field:** `image` in the final family object created in `js/collections-data.js`.
+- **Naming convention:** `compound-001.webp`, `compound-002.webp`, and so on. This remains scalable beyond compound 083.
+- **Placeholder:** An empty `image` field, or a missing image file, displays “Historical image coming soon” without leaving a broken image icon or empty image box.
+- **Reuse:** A populated `record.image` is rendered automatically in the Families page card, homepage family card, and detail/modal image. Card images remain lazy-loaded; detail/modal images load when opened.
 - **Local files, not URLs:** Active family photographs use local relative paths. No external image URL is used by the active family collection.
 
-To replace the temporary photograph for JAGANARA KHORE later, store the approved photograph in `img/`, then make the JAGANARA KHORE record resolve to that image through its `heroImage` field. Keep its `familyId` and `mapLocationId` unchanged.
+To add a photograph for Compound No. 1 later, store it as `img/families/compound-001.webp`, then change only that compound's `image` field to `image: 'img/families/compound-001.webp'`. Keep its `familyId`, `mapLocationId`, relationships, and historical content unchanged.
 
 ## Village Map
 
@@ -387,7 +387,7 @@ The older visual timeline on `index.html` is not driven by `historyStories`.
 
 ### Existing Local Media
 
-The sole local image folder is `img/`. It contains:
+The existing site media remains in `img/`. Dedicated family photographs belong in `img/families/`. The current root-level media includes:
 
 - `WhatsApp Image 2026-08-28 at 22.43.08.jpeg`
 - `demba-kunda-village-mosque-gambia1.jpg`
@@ -397,13 +397,13 @@ The sole local image folder is `img/`. It contains:
 - `hero1.jpg`
 - `herohave to change .jpg`
 
-There are no separate `families/`, `places/`, `timeline/`, audio, video, document, or map-image folders.
+The `img/families/` folder is reserved for compound photographs. There are no separate `places/`, `timeline/`, audio, video, document, or map-image folders.
 
 ### Image Path Conventions
 
 - Root pages generally use `img/file-name.jpg`.
 - Legacy `heritage-data.js` uses `../img/file-name.jpg`, even though `heritage.html` is at the project root. This is a path convention to verify before maintaining legacy heritage images.
-- The active family collection uses `img/hero.jpg`.
+- The active family collection uses `record.image`, with paths such as `img/families/compound-001.webp`.
 - Active map location media arrays are empty/not populated.
 
 ### Missing Referenced Images
@@ -412,7 +412,7 @@ The following local image paths are referenced by existing HTML/JavaScript but d
 
 `about-1.jpg`, `about-2.jpg`, `about-3.jpg`, `about-child.jpg`, `blog-1.jpg`, `blog-2.jpg`, `blog-3.jpg`, `blog-mini-1.jpg`, `blog-mini-2.jpg`, `events-1.jpg`, `events-2.jpg`, `events-3.jpg`, `sermon-1.jpg`, `sermon-2.jpg`, `sermon-3.jpg`, `team-1.jpg`, `team-2.jpg`, `team-3.jpg`, `team-4.jpg`, `testimonial-1.jpg`, `testimonial-2.jpg`, `testimonial-3.jpg`, and `testimonial-4.jpg`.
 
-These missing paths are concentrated in older static/template pages and legacy data files. They are separate from the active family system’s existing `img/hero.jpg` placeholder.
+These missing paths are concentrated in older static/template pages and legacy data files. They are separate from the active family system, whose blank `record.image` values intentionally show a placeholder.
 
 ## Data Relationships
 
@@ -471,9 +471,9 @@ Want to change a family name?
 → Field: raw row index `1` → resulting `name`
 
 Want to replace a family image?  
-→ Image folder: `img/`  
+→ Image folder: `img/families/`  
 → Data file: `js/collections-data.js`  
-→ Image field: resulting `heroImage` (currently globally assigned `img/hero.jpg` for every active family)
+→ Image field: resulting `image`, for example `image: 'img/families/compound-001.webp'`
 
 Want to add a new family?  
 → File: `js/collections-data.js`  
@@ -541,7 +541,7 @@ Want to change the mobile layout?
 - `js/village-map-book.js` has a different hard-coded map dataset, including Marry Kaara as an outgrowth village. This file is also not loaded by `village-map.html`.
 - `js/family-data.js`, `js/well-data.js`, and `js/forest-data.js` contain legacy fictional/template-style records (`Family 1`, `Well1`, `Forest1`, etc.) distinct from the active source-bound collection data.
 - `js/heritage-data.js` duplicates place content separately for the legacy home-page heritage links and uses some mosque images as temporary substitutes for school/hospital imagery.
-- All 34 active families share the temporary `img/hero.jpg` image; individual photographs are not yet assigned.
+- Active family photographs are individually assigned through `record.image`; blank values currently keep the historical-image placeholder.
 - The Digital Museum has 20 active stories but no implemented per-story image, video, audio, document, or book-link data. `HISTORY_BOOK_URL` is empty.
 - The older home-page timeline in `index.html` / `js/main.js` is a second timeline system and contains only bracketed placeholders.
 - Twenty-three referenced image files are absent from `img/`; they are mainly required by legacy/static template pages. Do not assume an absent reference is an approved replacement photo.
