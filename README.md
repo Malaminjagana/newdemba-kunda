@@ -17,7 +17,7 @@ There is no JSON, package manifest, build configuration, or server configuration
 
 | Area | Actual files/folders | Purpose |
 |---|---|---|
-| Main pages | `index.html`, `about.html`, `contact.html`, `event.html`, `team.html`, `testimonial.html`, `Archive.html`, `timeline.html` | Older/static template site pages; most content is hard-coded in the HTML. |
+| Main pages | `index.html`, `about.html`, `contact.html`, `event.html`| Older/static template site pages; most content is hard-coded in the HTML. |
 | Digital Museum | `museum.html`, `js/history-data.js`, `js/history-archive.js`, `css/history-archive.css` | Searchable and filterable archive of 20 history stories. |
 | Families | `families.html`, `js/collections-data.js`, `js/collections.js`, `css/collections.css` | Active family-compound collection: cards and modal/detail sheet. |
 | Farming Places | `farming.html`, `js/collections-data.js`, `js/collections.js`, `css/collections.css` | Active farming/forest collection: cards and modal/detail sheet. |

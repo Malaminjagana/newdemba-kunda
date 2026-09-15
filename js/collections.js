@@ -5,6 +5,18 @@
     const grid = document.querySelector('[data-collection-grid]');
     const detail = document.querySelector('[data-collection-detail]');
     if (!collection || !grid || !detail) return;
+    collection.records.forEach(function (record) {
+        if (Array.isArray(record)) {
+            record.name = record[1];
+            record.compoundNumber = record[2];
+            record.neighborhood = record[2];
+            record.location = record[2];
+            record.cta = key === 'families' ? 'Explore family' : 'Explore record';
+            return;
+        }
+        record.location = record.location || record.neighborhood || 'Documented village household';
+        record.cta = record.cta || (key === 'families' ? 'Explore family' : 'Explore record');
+    });
     document.body.appendChild(detail);
     const navigationToggle = document.querySelector('.navbar-toggler');
     const navigation = document.getElementById('family-navigation');
@@ -23,7 +35,24 @@
     function escapeHtml(value) { return String(value).replace(/[&<>'"]/g, function (character) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[character]; }); }
     let lastFocusedElement = null;
     let scrollPosition = 0;
-    function recordFromId(id) { return collection.records.find(function (record) { return record.id === id; }); }
+    function recordFromId(id) {
+        const record = collection.records.find(function (item) {
+            return (Array.isArray(item) ? item[0] : item.id) === id;
+        });
+        if (!Array.isArray(record)) return record;
+        return {
+            id: record[0],
+            name: record[1],
+            compoundNumber: record[2],
+            neighborhood: record[2],
+            location: record[2],
+            description: record[3],
+            shortDescription: record[4],
+            mapLocationId: record[0],
+            category: key === 'farming' ? 'farmland' : undefined,
+            cta: key === 'families' ? 'Explore family' : 'Explore record'
+        };
+    }
     function imageMarkup(record, loading) {
         if (!record.image) return '';
         return '<img src="' + escapeHtml(record.image) + '" alt="' + escapeHtml(record.imageAlt || record.name + ' historical photograph') + '"' + (loading ? ' loading="' + loading + '"' : '') + ' data-cover-image>';
@@ -48,12 +77,16 @@
         lockPageScroll();
         const coverClass = record.image ? 'collection-cover' : 'collection-cover has-fallback';
         const isPond = key === 'ponds';
-        const detailLabel = isPond ? 'Pond Archive' : 'Family Archive';
-        const detailAction = isPond ? 'Close pond details' : 'Close family details';
-        const location = isPond ? '' : '<p class="collection-neighbourhood">' + escapeHtml(record.neighborhood) + '</p>';
-        const compound = isPond ? '' : '<p class="collection-compound">' + escapeHtml(record.compoundNumber) + '</p>';
+        const isLegacyRecord = Array.isArray(record);
+        const isFarmingRecord = key === 'farming';
+        const detailLabel = isPond ? 'Pond Archive' : isFarmingRecord ? (record.category === 'forest' ? 'Forest Archive' : 'Farmland Archive') : 'Family Archive';
+        const detailAction = isPond ? 'Close pond details' : isFarmingRecord ? 'Close landscape details' : 'Close family details';
+        const location = isPond ? '' : '<p class="collection-neighbourhood">' + escapeHtml(isLegacyRecord ? record.neighborhood : record.location) + '</p>';
+        const compound = isPond || isFarmingRecord ? '' : '<p class="collection-compound">' + escapeHtml(record.compoundNumber) + '</p>';
+        const historicalNote = isFarmingRecord && record.historicalNote ? '<p class="collection-copy"><strong>Historical context:</strong> ' + escapeHtml(record.historicalNote) + '</p>' : '';
+        const relatedFamilies = isFarmingRecord && record.relatedFamilies && record.relatedFamilies.length ? '<p class="collection-copy"><strong>Documented families:</strong> ' + escapeHtml(record.relatedFamilies.join(', ')) + '</p>' : '';
         const description = record.description ? '<p class="collection-copy">' + escapeHtml(record.description) + '</p>' : '';
-        detail.innerHTML = '<div class="collection-sheet" role="dialog" aria-modal="true" aria-labelledby="collection-detail-title" aria-label="' + detailLabel + '"><header class="collection-modal-header"><p class="museum-kicker">' + detailLabel + '</p><button type="button" class="collection-detail-close" data-close-detail aria-label="' + detailAction + '"><i class="fa fa-times" aria-hidden="true"></i></button></header><div class="collection-sheet-scroll"><div class="' + coverClass + '" data-cover>' + imageMarkup(record) + '<div class="collection-cover-fallback"><i class="fa ' + collection.icon + '" aria-hidden="true"></i><span>Historical image coming soon</span></div></div><div class="collection-sheet-content"><h2 id="collection-detail-title">' + escapeHtml(record.name) + '</h2>' + compound + location + description + bookCtaMarkup() + (record.mapLocationId ? '<a class="collection-map-link" href="village-map.html?location=' + encodeURIComponent(record.mapLocationId) + '">View on village map <i class="fa fa-arrow-right" aria-hidden="true"></i></a>' : '') + '<p class="collection-media"><i class="far fa-image" aria-hidden="true"></i> Historical photographs and media for this record are not yet documented.</p></div></div></div>';
+        detail.innerHTML = '<div class="collection-sheet" role="dialog" aria-modal="true" aria-labelledby="collection-detail-title" aria-label="' + detailLabel + '"><header class="collection-modal-header"><p class="museum-kicker">' + detailLabel + '</p><button type="button" class="collection-detail-close" data-close-detail aria-label="' + detailAction + '"><i class="fa fa-times" aria-hidden="true"></i></button></header><div class="collection-sheet-scroll"><div class="' + coverClass + '" data-cover>' + imageMarkup(record) + '<div class="collection-cover-fallback"><i class="fa ' + collection.icon + '" aria-hidden="true"></i><span>Historical image coming soon</span></div></div><div class="collection-sheet-content"><h2 id="collection-detail-title">' + escapeHtml(record.name) + '</h2>' + compound + location + description + historicalNote + relatedFamilies + (isFarmingRecord ? '' : bookCtaMarkup()) + (record.mapLocationId ? '<a class="collection-map-link" href="village-map.html?location=' + encodeURIComponent(record.mapLocationId) + '">View on village map <i class="fa fa-arrow-right" aria-hidden="true"></i></a>' : '') + '<p class="collection-media"><i class="far fa-image" aria-hidden="true"></i> Historical photographs and media for this record are not yet documented.</p></div></div></div>';
         const close = function () { showDetail(); history.replaceState(null, '', window.location.pathname); };
         detail.querySelector('[data-close-detail]').addEventListener('click', close);
         const coverImageElement = detail.querySelector('[data-cover-image]');
@@ -62,8 +95,11 @@
         history.replaceState(null, '', '?' + key + '=' + encodeURIComponent(record.id));
     }
     const isPond = key === 'ponds';
-    grid.innerHTML = collection.records.map(function (record) { const cardImage = record.image ? imageMarkup(record, 'lazy') : ''; const metadata = isPond ? '' : '<p class="museum-kicker">' + escapeHtml(record.compoundNumber) + '</p><p class="collection-card-neighbourhood">' + escapeHtml(record.neighborhood) + '</p>'; const action = isPond ? 'Explore pond' : 'Explore family'; return '<article class="collection-card"><div class="collection-card-image' + (record.image ? '' : ' has-fallback') + '" data-cover>' + cardImage + '<div class="collection-card-icon"><i class="fa ' + collection.icon + '" aria-hidden="true"></i><span>Historical image coming soon</span></div></div><div class="collection-card-body"><h2>' + escapeHtml(record.name) + '</h2>' + metadata + '<p>' + escapeHtml(record.shortDescription) + '</p><button type="button" data-record-id="' + escapeHtml(record.id) + '">' + action + ' <i class="fa fa-arrow-right" aria-hidden="true"></i></button></div></article>'; }).join('');
-    grid.querySelectorAll('.collection-card-image img').forEach(function (image) { image.addEventListener('error', function () { image.remove(); image.closest('.collection-card-image').classList.add('has-fallback'); }); });
+    grid.innerHTML = collection.records.map(function (record) { const isLegacyRecord = Array.isArray(record); const cardImage = !isLegacyRecord && record.image ? imageMarkup(record, 'lazy') : ''; const metadata = isPond ? '' : '<p class="museum-kicker">' + escapeHtml(isLegacyRecord ? record.compoundNumber : record.category === 'forest' ? 'Forest area' : 'Farming area') + '</p><p class="collection-card-neighbourhood">' + escapeHtml(isLegacyRecord ? record.neighborhood : record.location) + '</p>'; const action = isPond ? 'Explore pond' : isLegacyRecord ? 'Explore family' : record.cta; return '<article class="collection-card"><div class="collection-card-image' + (isLegacyRecord || !record.image ? ' has-fallback' : '') + '" data-cover>' + cardImage + '<div class="collection-card-icon"><i class="fa ' + collection.icon + '" aria-hidden="true"></i><span>Historical image coming soon</span></div></div><div class="collection-card-body"><h2>' + escapeHtml(isLegacyRecord ? record.name : record.title || record.name) + '</h2>' + metadata + '<p>' + escapeHtml(isLegacyRecord ? record[4] : record.shortDescription) + '</p><button type="button" data-record-id="' + escapeHtml(isLegacyRecord ? record[0] : record.id) + '">' + action + ' <i class="fa fa-arrow-right" aria-hidden="true"></i></button></div></article>'; }).join('');
+        if (key !== 'families' && key !== 'ponds') {
+            grid.querySelectorAll('[data-record-id]').forEach(function (button) { button.firstChild.textContent = 'Explore record '; });
+        }
+        grid.querySelectorAll('.collection-card-image img').forEach(function (image) { image.addEventListener('error', function () { image.remove(); image.closest('.collection-card-image').classList.add('has-fallback'); }); });
     grid.querySelectorAll('[data-record-id]').forEach(function (button) { button.addEventListener('click', function () { showDetail(recordFromId(button.dataset.recordId)); }); });
     document.addEventListener('keydown', function (event) { if (event.key === 'Escape' && !detail.hidden) showDetail(); });
     detail.addEventListener('click', function (event) { if (event.target === detail) showDetail(); });
