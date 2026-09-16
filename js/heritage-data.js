@@ -15,26 +15,14 @@ const heritagePlaces = {
             { label: "Location", value: "New Demba Kunda, The Gambia" },
             { label: "Focus", value: "Community worship & learning" }
         ],
-        gallery: [
-            {
-                src: "../img/demba-kunda-village-mosque-gambia1.jpg",
-                alt: "Front entrance of the first mosque in New Demba Kunda Village.",
-                caption: "The welcoming entrance of the first mosque in the village.",
-                loading: "eager"
-            },
-            {
-                src: "../img/demba-kunda-village-mosque-gambia2.jpg",
-                alt: "Interior view near the prayer area of the first mosque.",
-                caption: "A peaceful view toward the prayer area inside the first mosque.",
-                loading: "lazy"
-            },
-            {
-                src: "../img/demba-kunda-village-mosque-gambia3.jpg",
-                alt: "Community members arriving at the first mosque for prayer.",
-                caption: "Villagers arriving at the mosque for a shared prayer service.",
-                loading: "lazy"
-            }
-        ]
+        gallery: firstMosqueMedia.map(function (src, index) {
+            return {
+                src: src,
+                alt: "Historical photograph " + (index + 1) + " of New Demba Kunda First Mosque.",
+                caption: "New Demba Kunda First Mosque historical photograph " + (index + 1) + ".",
+                loading: index === 0 ? "eager" : "lazy"
+            };
+        })
     },
     "second-mosque": {
         title: "New Demba Kunda Second Mosque",
@@ -115,7 +103,7 @@ const heritagePlaces = {
         category: "Education",
         intro: "A traditional Arabic school focused on Quranic lessons and foundational Islamic education for the village youth.",
         metaDescription: "Visit the First Arabic School in New Demba Kunda, view its gallery, and learn its role in village learning.",
-        heroImage: "../img/demba-kunda-village-mosque-gambia1.jpg",
+        heroImage: "../img/schools/Al-Salafiya2.webp",
         heroAlt: "New Demba Kunda Village Arabic school teaching Quranic studies and traditional Islamic education",
         heroCaption: "The first Arabic school in the village, a center for Quranic learning and cultural study.",
         description: "This school is dedicated to Arabic and religious education, helping village children learn the Quran and traditional values.",
@@ -126,26 +114,14 @@ const heritagePlaces = {
             { label: "Location", value: "New Demba Kunda, The Gambia" },
             { label: "Focus", value: "Quranic education" }
         ],
-        gallery: [
-            {
-                src: "../img/demba-kunda-village-mosque-gambia1.jpg",
-                alt: "Exterior of the first Arabic school in New Demba Kunda.",
-                caption: "The first Arabic school building where lessons take place.",
-                loading: "eager"
-            },
-            {
-                src: "../img/demba-kunda-village-mosque-gambia2.jpg",
-                alt: "Students studying inside the Arabic school.",
-                caption: "A classroom environment for Quranic study.",
-                loading: "lazy"
-            },
-            {
-                src: "../img/demba-kunda-village-mosque-gambia3.jpg",
-                alt: "Teachers and learners at the Arabic school courtyard.",
-                caption: "A courtyard scene where teachers and students gather.",
-                loading: "lazy"
-            }
-        ]
+        gallery: firstArabicSchoolMedia.map(function (src, index) {
+            return {
+                src: src,
+                alt: "First Arabic School photograph " + (index + 1) + ".",
+                caption: "First Arabic School photograph " + (index + 1) + ".",
+                loading: index === 0 ? "eager" : "lazy"
+            };
+        })
     },
     "english-school": {
         title: "English School",
@@ -163,26 +139,14 @@ const heritagePlaces = {
             { label: "Location", value: "New Demba Kunda, The Gambia" },
             { label: "Focus", value: "Primary education" }
         ],
-        gallery: [
-            {
-                src: "../img/demba-kunda-village-mosque-gambia2.jpg",
-                alt: "The English school building in New Demba Kunda Village.",
-                caption: "The English school building welcoming students each day.",
-                loading: "eager"
-            },
-            {
-                src: "../img/demba-kunda-village-mosque-gambia1.jpg",
-                alt: "Pupils gathered outside the English school.",
-                caption: "Children arriving for school in the village.",
-                loading: "lazy"
-            },
-            {
-                src: "../img/demba-kunda-village-mosque-gambia3.jpg",
-                alt: "A classroom scene representing the village English school.",
-                caption: "A classroom scene at the English school.",
-                loading: "lazy"
-            }
-        ]
+        gallery: englishSchoolMedia.map(function (src, index) {
+            return {
+                src: src,
+                alt: "English School photograph " + (index + 1) + ".",
+                caption: "English School photograph " + (index + 1) + ".",
+                loading: index === 0 ? "eager" : "lazy"
+            };
+        })
     },
     "second-arabic-school": {
         title: "Second Arabic School",
