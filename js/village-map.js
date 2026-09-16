@@ -320,7 +320,7 @@
     }
 
     function renderSchematicMarkers() {
-        schematicMap.innerHTML = villageHistoryData.locations.map(function (location) {
+        schematicMap.innerHTML = villageHistoryData.locations.filter(function (location) { return Array.isArray(location.mapPosition); }).map(function (location) {
             const position = location.mapPosition || [50, 50];
             const active = location.id === selectedLocationId ? ' is-active' : '';
             return '<button type="button" class="heritage-map-marker' + active + '" data-location-id="' + escapeHtml(location.id) + '" style="left:' + position[0] + '%;top:' + position[1] + '%" aria-label="Explore ' + escapeHtml(location.name) + '"><i class="fa ' + escapeHtml(location.markerIcon || 'fa-map-marker-alt') + '" aria-hidden="true"></i><span>' + escapeHtml(location.name) + '</span></button>';

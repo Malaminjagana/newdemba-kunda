@@ -1,3 +1,16 @@
+const waterSourceMedia = {
+    'khuban-ghede': ['img/khuban ghede1.webp', 'img/khuban ghede 2 .webp', 'img/khuban ghede 3 .webp'],
+    'bunkhun-ghede': ['img/Bunkhun-ghede1.webp', 'img/Bunkhun-ghede2.webp'],
+    'darbon-ghede': [],
+    'kaban-ghede': ['img/Kaban ghede1.webp', 'img/Kaban ghede2.webp'],
+    'bantan-ghede': ['img/Bantan ghede1.webp', 'img/Bantan ghede2.webp'],
+    'mayisin-ghede': ['img/Mayisin ghede2.webp', 'img/Mayisin ghede1.webp', 'img/Mayisin ghede3.webp'],
+    'juman-ghede': [],
+    'garankan-ghede': ['img/Garankan ghede1.webp', 'img/Garankan ghede2.webp'],
+    'ballan-khole': [],
+    'water-project-2004': ['img/water-project1.webp', 'img/water-project2.webp']
+};
+
 const museumCollections = {
     families: {
         label: 'New Demba Kunda Families', title: 'Meet Our New Demba Kunda Families', subtitle: 'Click any family to read the documented compound record and its place in village history.', icon: 'fa-home', source: 'The History of New Demba Kunda, Chapters Two and Three', records: [
@@ -8,7 +21,7 @@ const museumCollections = {
         ['bassen-kille', 'BASSEN KILLE FARMLAND', 'Road to Basse', 'Vast farmland associated with Jaganara, Khonteh and Bakhaga.', 'Farmland on the road to Basse'], ['tobali-kunda', 'TOBALI KUNDA FARMLAND', 'South of the village', 'An extinct village site now used as farmland.', 'Former village, now farmland'], ['biraima-kaara', 'BIRAIMA KAARA FARMLAND', 'About 3 km southeast', 'An extinct Fula village; wells and mango trees remain.', 'Wells and mango markers remain'], ['simbanou', 'SIMBANOU FARMLAND', 'Historical settlement site', 'An extinct village founded by the Jamiggeh family, now farmland of Jaganara and Jamiggera.', 'Former Jamiggeh village'], ['tekinam', 'TEKINAM FARMLAND', 'Western suburb', 'A Fula village associated with Samba Teneh; mango, baobab and taba trees remain.', 'Mango, baobab and taba markers'], ['dindi-hori', 'DINDI HORI FARMLAND', 'About 1.5 km southwest, Senegal territory', 'Farmland associated with Numuyel Jaganara and Hydara Kunda.', 'Cross-border farmland record'], ['ha-dugu', 'HA DUGU FOREST', 'About 3 km southwest, Lambatara road', 'The largest forest, formerly farmland and now used for cattle grazing.', 'Largest forest and grazing area'], ['dala-gilleh', 'DALA GILLEH FOREST', 'About 2 km west, Gambisara road', 'The second largest forest, with ponds used by cattle.', 'Forest with cattle ponds'], ['jinna-wurunde', 'JINNA WURUNDE FARMLAND', 'After Tobali Kunda', 'A Fula village site remembered through baobab and taba trees.', 'Former Fula village markers'], ['sirehin-kaara', 'SIREHIN KAARA (Tumbun Lemmeh)', 'About 2 km south', 'Sharif\'s small vanished village, now farmland of Jaganara and Dukurella.', 'Vanished village, now farmland']
     ] },
     wells: { label: 'New Demba Kunda Wells', title: 'Explore Our Village Water Sources', subtitle: 'Discover the documented wells, stream crossings and water infrastructure that sustained village life.', icon: 'fa-tint', source: 'The History of New Demba Kunda, Chapter Four, Section Six, pages 280-287', records: [
-        ['khuban-ghede', 'KHUBAN GHEDE', 'Seyinka field, west of Central Mosque', 'The first well in the village, dug by founder Foday Jagana in the early 20th century. Its water was salty.', 'First well, dug by the founder'], ['darbon-ghede', 'DARBON GHEDE', 'East side of the village', 'Dug by Sikhou Darbo of Darbo Kunda, this old well had fresh water and was rebuilt by Sharif Jagana (Sirihi).', 'Old fresh-water well'], ['kaban-ghede', 'KABAN GHEDE', 'Beside Kaba Kunda, south of Central Mosque', 'Dug by Nangou Kaba, this well had fresh water that later changed.', 'Well beside Kaba Kunda'], ['bantan-ghede', 'BANTAN GHEDE', 'Southwest, opposite Kagorta Khore', 'Dug by Bantan Penda Camara and named after him; its water was fresh.', 'Named for Bantan Penda Camara'], ['mayisin-ghede', 'MAYISIN GHEDE', 'Traditional High School', 'Dug by Sheikh Kharamoko Hawa Khonteh, head of Khonteh Kunda.', 'Traditional school well'], ['juman-ghede', 'JUMAN GHEDE', 'Next to Central Mosque', 'Dug by Sharif Jagana (Sirihi).', 'Central Mosque well'], ['garankan-ghede', 'GARANKAN GHEDE', 'South, next to Fayinkeh Kunda', 'Dug by Salim Fayinkeh, father of Kaw Fayinkeh.', 'Well beside Fayinkeh Kunda'], ['ballan-khole', 'BALLAN KHOLE AND STREAM CROSSINGS', 'Village watercourses', 'Ballan Khole, Ba Malalin Khare and Kholi Khore include a crocodile incident involving Malali Njie and a bridge at Kholi Khore built around 1966.', 'Watercourses and a c. 1966 bridge'], ['water-project-2004', 'MODERN WATER PROJECT', 'Borehole in Jaganara Khore', 'Two 60,000-litre tanks and 74 taps were installed. Pumping began Friday 14 Ramadan 1425H / 29 October 2004; the system was usable 30 October 2004, funded by expatriates and government.', 'Borehole, tanks and 74 taps']
+        ['khuban-ghede', 'KHUBAN GHEDE', 'Seyinka field, west of Central Mosque', 'The first well in the village, dug by founder Foday Jagana in the early 20th century. Its water was salty.', 'First well, dug by the founder'], ['bunkhun-ghede', 'BUNKHUN GHEDE', 'Boundary between Old and New Demba Kunda', 'A historic boundary well between Old and New Demba Kunda.', 'Historic boundary well between Old and New Demba Kunda'], ['darbon-ghede', 'DARBON GHEDE', 'East side of the village', 'Dug by Sikhou Darbo of Darbo Kunda, this old well had fresh water and was rebuilt by Sharif Jagana (Sirihi).', 'Old fresh-water well'], ['kaban-ghede', 'KABAN GHEDE', 'Beside Kaba Kunda, south of Central Mosque', 'Dug by Nangou Kaba, this well had fresh water that later changed.', 'Well beside Kaba Kunda'], ['bantan-ghede', 'BANTAN GHEDE', 'Southwest, opposite Kagorta Khore', 'Dug by Bantan Penda Camara and named after him; its water was fresh.', 'Named for Bantan Penda Camara'], ['mayisin-ghede', 'MAYISIN GHEDE', 'Traditional High School', 'Dug by Sheikh Kharamoko Hawa Khonteh, head of Khonteh Kunda.', 'Traditional school well'], ['juman-ghede', 'JUMAN GHEDE', 'Next to Central Mosque', 'Dug by Sharif Jagana (Sirihi).', 'Central Mosque well'], ['garankan-ghede', 'GARANKAN GHEDE', 'South, next to Fayinkeh Kunda', 'Dug by Salim Fayinkeh, father of Kaw Fayinkeh.', 'Well beside Fayinkeh Kunda'], ['water-project-2004', 'MODERN WATER PROJECT', 'Borehole in Jaganara Khore', 'Two 60,000-litre tanks and 74 taps were installed. Pumping began Friday 14 Ramadan 1425H / 29 October 2004; the system was usable 30 October 2004, funded by expatriates and government.', 'Borehole, tanks and 74 taps']
     ] },
     ponds: { label: 'New Demba Kunda Ponds', title: 'Ponds of New Demba Kunda', subtitle: 'Explore documented ponds and water features connected to the village landscape.', icon: 'fa-water', source: 'The History of New Demba Kunda', records: [
         { id: 'dala-gilleh', name: 'Dala Gilleh', description: '', shortDescription: 'Documented pond and forest area.', image: '', imageAlt: 'Historical image coming soon for Dala Gilleh', mapLocationId: 'dala-gilleh' },
@@ -21,9 +34,25 @@ const museumCollections = {
         { id: 'sikhou-hounen-dala', name: 'Sikhou Hounen Dala', description: '', shortDescription: 'Documented village pond.', image: '', imageAlt: 'Historical image coming soon for Sikhou Hounen Dala', mapLocationId: 'sikhou-hounen-dala' },
         { id: 'khilin-dala', name: 'Khilin Dala', description: '', shortDescription: 'Documented village pond.', image: '', imageAlt: 'Historical image coming soon for Khilin Dala', mapLocationId: 'khilin-dala' },
         { id: 'saban-dala', name: 'Saban Dala', description: '', shortDescription: 'Documented village pond.', image: '', imageAlt: 'Historical image coming soon for Saban Dala', mapLocationId: 'saban-dala' },
-        { id: 'khumba-janken-dala', name: 'Khumba Janken Dala', description: '', shortDescription: 'Documented village pond.', image: '', imageAlt: 'Historical image coming soon for Khumba Janken Dala', mapLocationId: 'khumba-janken-dala' }
+        { id: 'khumba-janken-dala', name: 'Khumba Janken Dala', description: '', shortDescription: 'Documented village pond.', image: '', imageAlt: 'Historical image coming soon for Khumba Janken Dala', mapLocationId: 'khumba-janken-dala' },
+        { id: 'ballan-khole', name: 'BALLAN KHOLE AND STREAM CROSSINGS', description: 'Ballan Khole is part of the stream southwest of the village, where fishing and swimming took place and white clay was collected for painting and decorating houses. Kholi Khore is another section of the stream west of the village on the road toward Gambisara, where a bridge was built around 1966.', shortDescription: 'Ballan Khole, Kholi Khore and the historic c. 1966 bridge', image: '', imageAlt: 'Historical image coming soon for Ballan Khole and stream crossings', mapLocationId: 'ballan-khole' }
     ] }
 };
+
+museumCollections.wells.records = museumCollections.wells.records.map(function (record) {
+    const images = waterSourceMedia[record[0]] || [];
+    return {
+        id: record[0],
+        name: record[1],
+        location: record[2],
+        description: record[3],
+        shortDescription: record[4],
+        image: images[0] || '',
+        images: images,
+        imageAlt: record[1] + ' historical photograph',
+        mapLocationId: record[0]
+    };
+});
 
 /* Each family image can be added independently when an authenticated photograph is available. */
 museumCollections.families.records = museumCollections.families.records.map(function (record) {

@@ -65,13 +65,16 @@ villageHistoryData = {
     ].forEach(function (entry) { add(entry[0], entry[1], entry[0].indexOf('demba-kunda') >= 0 || entry[0] === 'malinkon-kaara' || entry[0] === 'numuyel' || entry[0] === 'gambisara' || entry[0] === 'sabi' ? 'Neighbouring Village' : 'Nearest City', 'fa-map-signs', entry[2], entry[3]); });
     [
         ['khuban-ghede', 'KHUBAN GHEDE', [31, 44], 'At Seyinka Field west of the Central Mosque, associated with Foday Jagana and described as possibly the first well in the village.'],
+        ['bunkhun-ghede', 'Bunkhun Ghede', null, 'A historic boundary well between Old and New Demba Kunda.', 'The book describes Bunkhun-Ghede as a boundary well between Old and New Demba Kunda.'],
         ['darbon-ghede', 'DARBON GHEDE', [67, 42], 'An east-side well dug by Sikhou Darbo, associated with fresh water and later rebuilding by Sharif Jagana.'],
         ['kaban-ghede', 'KABAN GHEDE', [55, 63], 'Beside Kaba Kunda south of the Central Mosque, dug by Nangou Kaba.'],
         ['bantan-ghede', 'BANTAN GHEDE', [35, 70], 'Southwest opposite Kagorta Khore, dug by Bantan Penda Camara.'],
         ['mayisin-ghede', 'MAYISIN GHEDE', [38, 18], 'The Traditional High School / Majlis well, dug by Kharamoko Hawa Khonteh.'],
         ['juman-ghede', 'JUMAN GHEDE', [44, 36], 'Next to the Central Mosque, dug by Sharif Jagana (Sirihi).'],
         ['garankan-ghede', 'GARANKAN GHEDE', [58, 78], 'South next to Fayinkeh Kunda, dug by Salim Fayinkeh.']
-    ].forEach(function (entry) { add(entry[0], entry[1], 'Wells', 'fa-tint', entry[2], entry[3]); });
+    ].forEach(function (entry) { add(entry[0], entry[1], 'Wells', 'fa-tint', entry[2], entry[3], entry[4]); });
+    add('ballan-khole', 'BALLAN KHOLE AND STREAM CROSSINGS', 'Water', 'fa-water', [13, 43], 'Ballan Khole is part of the stream southwest of the village, where fishing and swimming took place and white clay was collected for painting and decorating houses. Kholi Khore is another section of the stream west of the village on the road toward Gambisara, where a bridge was built around 1966.', 'Ballan Khole and Kholi Khore are documented on printed pages 284-285.');
+    add('water-project-2004', 'MODERN WATER PROJECT', 'Historic Infrastructure', 'fa-tint', [49, 52], 'A central borehole, two large water tanks holding 60,000 liters each and 74 water taps formed the village water supply project, which began operating in October 2004.');
     [
         ['misidin-kura', 'MISIDIN KURA', [34, 38], 'West of the Central Mosque, where elders rested and waited for prayers and funeral meetings.'],
         ['seyinkan-kura', 'SEYINKAN KURA', [29, 51], 'At the southern corner of Seyinka Field next to Khuban Ghede.'],
@@ -88,6 +91,10 @@ villageHistoryData = {
     ['Ha Dugu', 'Dala Gilleh', 'American Diga', 'Khole Halle Giden Kamma', 'Hulundumbu', 'Simbanou'].forEach(function (name, index) { add('forest-' + index, name, 'Forests', 'fa-tree', [13 + index * 14, 91], 'A nearby forest area associated with the village landscape.', 'This position is illustrative and represents a forest landscape, not a verified boundary.'); });
     add('kholi-khore-bridge', 'Kholi Khore Bridge', 'Historic Infrastructure', 'fa-archway', [12, 43], 'A bridge at Kholi Khore was built around 1966.', 'This bridge is connected to the Kholi Khore stream section; its map position is illustrative.');
     data.locations = data.locations.concat(additions);
+    additions.forEach(function (location) {
+        if (!waterSourceMedia || !Object.prototype.hasOwnProperty.call(waterSourceMedia, location.id)) return;
+        location.media = { historicalImages: waterSourceMedia[location.id], currentImages: [], videos: [], audio: [], documents: [] };
+    });
     data.features = [
         { id: 'village-context', category: 'Landscape', type: 'region', positionType: 'illustrative', label: 'New Demba Kunda village context', bounds: [[18, 15], [78, 85]] },
         { id: 'western-wetland-stream', category: 'Water', type: 'line', positionType: 'illustrative', label: 'Water / Stream', points: [[93, 7], [84, 12], [75, 10], [66, 16], [56, 12], [45, 18], [31, 13], [13, 18]], sections: ['Ballan Khole', 'Ba Malalin Khare', 'Khari Khulleh', 'Yelin Debe', 'Kholi Lemmeh', 'Kholi Khore', 'Hayiren Khole'] },
