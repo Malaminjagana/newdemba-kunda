@@ -12,10 +12,14 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector('meta[name="description"]').setAttribute('content', place.metaDescription);
 
     const galleryItems = place.gallery.map((item, index) => {
+        const isVideo = item.type === "youtube";
+        const media = isVideo
+            ? `<span class="heritage-video-preview"><img src="${item.thumbnail}" alt="${item.alt}" class="img-fluid rounded shadow-sm" loading="lazy"><span class="heritage-video-play" aria-hidden="true"><i class="fas fa-play"></i></span></span>`
+            : `<img src="${item.src}" alt="${item.alt}" class="img-fluid rounded shadow-sm" loading="${item.loading}">`;
         return `
             <div class="col-sm-6 col-lg-4 mb-4">
-                <button class="heritage-gallery-item" data-index="${index}" aria-label="Open gallery image: ${item.caption}">
-                    <img src="${item.src}" alt="${item.alt}" class="img-fluid rounded shadow-sm" loading="${item.loading}">
+                <button class="heritage-gallery-item" data-index="${index}" aria-label="Open gallery ${isVideo ? "video" : "image"}: ${item.caption}">
+                    ${media}
                     <div class="heritage-gallery-caption mt-2 text-muted">${item.caption}</div>
                 </button>
             </div>
@@ -101,6 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <button type="button" class="heritage-lightbox-nav heritage-lightbox-prev" aria-label="Previous image">&#10094;</button>
                 <div class="heritage-lightbox-image-wrapper">
                     <img id="heritage-lightbox-image" src="" alt="" class="img-fluid">
+                        <div id="heritage-lightbox-video" class="heritage-lightbox-video d-none"></div>
                     <div id="heritage-lightbox-caption" class="heritage-lightbox-caption"></div>
                 </div>
                 <button type="button" class="heritage-lightbox-nav heritage-lightbox-next" aria-label="Next image">&#10095;</button>
@@ -110,6 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const lightbox = document.getElementById("heritage-lightbox");
     const lightboxImage = document.getElementById("heritage-lightbox-image");
+    const lightboxVideo = document.getElementById("heritage-lightbox-video");
     const lightboxCaption = document.getElementById("heritage-lightbox-caption");
     const galleryButtons = document.querySelectorAll(".heritage-gallery-item");
     let currentIndex = 0;
@@ -117,8 +123,23 @@ document.addEventListener("DOMContentLoaded", function () {
     function openLightbox(index) {
         const item = place.gallery[index];
         currentIndex = index;
-        lightboxImage.src = item.src;
-        lightboxImage.alt = item.alt;
+        lightboxVideo.replaceChildren();
+        if (item.type === "youtube") {
+            lightboxImage.classList.add("d-none");
+            lightboxVideo.classList.remove("d-none");
+            const iframe = document.createElement("iframe");
+            iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(item.videoId)}`;
+            iframe.title = item.alt;
+            iframe.loading = "lazy";
+            iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+            iframe.allowFullscreen = true;
+            lightboxVideo.appendChild(iframe);
+        } else {
+            lightboxVideo.classList.add("d-none");
+            lightboxImage.classList.remove("d-none");
+            lightboxImage.src = item.src;
+            lightboxImage.alt = item.alt;
+        }
         lightboxCaption.textContent = item.caption;
         lightbox.classList.remove("d-none");
         lightbox.setAttribute("aria-hidden", "false");

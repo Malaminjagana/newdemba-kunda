@@ -170,6 +170,39 @@
                 outline: 3px solid var(--bs-primary);
                 outline-offset: 3px;
             }
+            .heritage-video-preview {
+                position: relative;
+                display: block;
+                aspect-ratio: 16 / 9;
+                overflow: hidden;
+                border-radius: .375rem;
+                background: #111;
+            }
+            .heritage-video-preview img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            .heritage-video-play {
+                position: absolute;
+                inset: 0;
+                display: grid;
+                place-items: center;
+                color: #fff;
+                font-size: 2rem;
+                background: rgba(0, 0, 0, .28);
+            }
+            .heritage-lightbox-video {
+                position: relative;
+                width: 100%;
+                aspect-ratio: 16 / 9;
+            }
+            .heritage-lightbox-video iframe {
+                width: 100%;
+                height: 100%;
+                border: 0;
+                border-radius: .75rem;
+            }
             @media (max-width: 768px) {
                 .heritage-card-image img { height: 260px; }
                 .heritage-lightbox { padding: 1rem; }

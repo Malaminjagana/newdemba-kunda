@@ -42,22 +42,35 @@ const heritagePlaces = {
         ],
         gallery: [
             {
-                src: "../img/demba-kunda-village-mosque-gambia2.jpg",
+                src: "../img/mosques/second mosque1.webp",
                 alt: "Exterior of the second mosque in New Demba Kunda Village.",
                 caption: "The second mosque, a calm spiritual center for the neighborhood.",
                 loading: "eager"
             },
             {
-                src: "../img/demba-kunda-village-mosque-gambia1.jpg",
-                alt: "Side view of the mosque entrance with greenery.",
-                caption: "A side view of the mosque entrance framed by village landscaping.",
+                src: "../img/mosques/second mosque2.webp",
+                alt: "New Demba Kunda Second Mosque viewed from the village grounds.",
+                caption: "New Demba Kunda Second Mosque from the village grounds.",
                 loading: "lazy"
             },
             {
-                src: "../img/demba-kunda-village-mosque-gambia3.jpg",
-                alt: "Daytime gathering area outside the second mosque.",
-                caption: "The outdoor gathering area where villagers meet before prayer.",
+                src: "../img/mosques/second mosque3.webp",
+                alt: "New Demba Kunda Second Mosque and its surrounding community space.",
+                caption: "The mosque and its surrounding community space.",
                 loading: "lazy"
+            },
+            {
+                src: "../img/mosques/second mosque4.webp",
+                alt: "New Demba Kunda Second Mosque building.",
+                caption: "A further view of New Demba Kunda Second Mosque.",
+                loading: "lazy"
+            },
+            {
+                type: "youtube",
+                videoId: "v32dhT4h55I",
+                thumbnail: "https://i.ytimg.com/vi/v32dhT4h55I/hqdefault.jpg",
+                alt: "Official video of New Demba Kunda Second Mosque.",
+                caption: "Official video of New Demba Kunda Second Mosque."
             }
         ]
     },
@@ -79,21 +92,45 @@ const heritagePlaces = {
         ],
         gallery: [
             {
-                src: "../img/demba-kunda-village-mosque-gambia3.jpg",
-                alt: "The third mosque with its simple prayer hall and courtyard.",
-                caption: "The simple architecture of the third mosque with a peaceful courtyard.",
+                src: "../img/mosques/third mosque1.webp",
+                alt: "New Demba Kunda Third Mosque, photograph 1.",
+                caption: "New Demba Kunda Third Mosque, photograph 1.",
                 loading: "eager"
             },
             {
-                src: "../img/demba-kunda-village-mosque-gambia1.jpg",
-                alt: "Prayers being held inside the third mosque.",
-                caption: "A calm prayer moment inside the third mosque.",
+                src: "../img/mosques/third mosque2.webp",
+                alt: "New Demba Kunda Third Mosque, photograph 2.",
+                caption: "New Demba Kunda Third Mosque, photograph 2.",
                 loading: "lazy"
             },
             {
-                src: "../img/demba-kunda-village-mosque-gambia2.jpg",
-                alt: "Village children walking past the third mosque.",
-                caption: "Children and families passing by the mosque on a regular day.",
+                src: "../img/mosques/third mosque3.webp",
+                alt: "New Demba Kunda Third Mosque, photograph 3.",
+                caption: "New Demba Kunda Third Mosque, photograph 3.",
+                loading: "lazy"
+            },
+            {
+                src: "../img/mosques/third mosque4.webp",
+                alt: "New Demba Kunda Third Mosque, photograph 4.",
+                caption: "New Demba Kunda Third Mosque, photograph 4.",
+                loading: "lazy"
+            },
+            {
+                src: "../img/mosques/third mosque5.webp",
+                alt: "New Demba Kunda Third Mosque, photograph 5.",
+                caption: "New Demba Kunda Third Mosque, photograph 5.",
+                loading: "lazy"
+            },
+            {
+                src: "../img/mosques/third mosque6.webp",
+                alt: "New Demba Kunda Third Mosque, photograph 6.",
+                caption: "New Demba Kunda Third Mosque, photograph 6.",
+                loading: "lazy"
+            },
+            {
+                src: "../img/mosques/third mosque7.webp",
+                alt: "New Demba Kunda Third Mosque, photograph 7.",
+                caption: "New Demba Kunda Third Mosque, photograph 7.",
                 loading: "lazy"
             }
         ]
@@ -128,7 +165,7 @@ const heritagePlaces = {
         category: "Education",
         intro: "A local English school offering modern primary learning for children throughout New Demba Kunda Village.",
         metaDescription: "Discover the English School in New Demba Kunda Village with gallery photos and community importance.",
-        heroImage: "../img/demba-kunda-village-mosque-gambia2.jpg",
+        heroImage: "../img/schools/english-school5.webp",
         heroAlt: "New Demba Kunda Village English primary school providing modern education for local children",
         heroCaption: "The village English school, supporting local children with academic learning and life skills.",
         description: "This English school supports the village’s next generation by offering classroom learning and foundational education.",
@@ -153,7 +190,7 @@ const heritagePlaces = {
         category: "Education",
         intro: "A second Arabic school that continues the village’s tradition of Islamic learning and advanced study.",
         metaDescription: "Explore the Second Arabic School of New Demba Kunda Village, with gallery images and community details.",
-        heroImage: "../img/demba-kunda-village-mosque-gambia3.jpg",
+        heroImage: "../img/schools/karahebrahimaarabic.webp",
         heroAlt: "New Demba Kunda Village second Arabic school focused on advanced Islamic learning and community teaching",
         heroCaption: "The second Arabic school, a place for deeper Quranic study and community religious education.",
         description: "This second Arabic school supports learners who want to continue Arabic language study and deepen their religious knowledge.",
@@ -166,22 +203,23 @@ const heritagePlaces = {
         ],
         gallery: [
             {
-                src: "../img/demba-kunda-village-mosque-gambia3.jpg",
-                alt: "The second Arabic school building in the village.",
-                caption: "The second Arabic school building used for advanced lessons.",
+                src: "../img/schools/karahebrahimaarabic.webp",
+                alt: "The Second Arabic School in New Demba Kunda Village.",
+                caption: "The Second Arabic School in New Demba Kunda Village.",
                 loading: "eager"
             },
             {
-                src: "../img/demba-kunda-village-mosque-gambia2.jpg",
-                alt: "Students learning together at the second Arabic school.",
-                caption: "A study group session at the Arabic school.",
+                src: "../img/schools/karahebrahimaarabic1.webp",
+                alt: "A learning space at the Second Arabic School.",
+                caption: "A learning space at the Second Arabic School.",
                 loading: "lazy"
             },
             {
-                src: "../img/demba-kunda-village-mosque-gambia1.jpg",
-                alt: "The school courtyard where learners gather.",
-                caption: "Learners gathering in the courtyard after class.",
-                loading: "lazy"
+                type: "youtube",
+                videoId: "v32dhT4h55I",
+                thumbnail: "https://i.ytimg.com/vi/v32dhT4h55I/hqdefault.jpg",
+                alt: "Official video of the Second Arabic School in New Demba Kunda Village.",
+                caption: "Official video of the Second Arabic School in New Demba Kunda Village."
             }
         ]
     },
@@ -190,7 +228,7 @@ const heritagePlaces = {
         category: "Healthcare",
         intro: "The village hospital is the main local healthcare facility, providing care and support for families in New Demba Kunda.",
         metaDescription: "Visit the New Demba Kunda Village Hospital page to see its gallery and learn about its role in community health.",
-        heroImage: "../img/hero.jpg",
+        heroImage: "../img/New health center 2 .webp",
         heroAlt: "New Demba Kunda Village hospital building serving as a community health center",
         heroCaption: "The village hospital building, providing health services to local residents.",
         description: "This hospital serves as the primary healthcare center for New Demba Kunda Village, supporting local families with medical care and wellness services.",
@@ -203,21 +241,27 @@ const heritagePlaces = {
         ],
         gallery: [
             {
-                src: "../img/hero.jpg",
-                alt: "The village hospital building in New Demba Kunda.",
-                caption: "The hospital that serves the New Demba Kunda community.",
+                src: "../img/hospital1.webp",
+                alt: "New Demba Kunda Village Hospital, photograph 1.",
+                caption: "New Demba Kunda Village Hospital, photograph 1.",
                 loading: "eager"
             },
             {
-                src: "../img/demba-kunda-village-mosque-gambia1.jpg",
-                alt: "A calm outdoor area near the village hospital.",
-                caption: "A calm outdoor scene near the hospital entrance.",
+                src: "../img/hospital2.webp",
+                alt: "New Demba Kunda Village Hospital, photograph 2.",
+                caption: "New Demba Kunda Village Hospital, photograph 2.",
                 loading: "lazy"
             },
             {
-                src: "../img/demba-kunda-village-mosque-gambia2.jpg",
-                alt: "A quiet hallway representing the hospital interior.",
-                caption: "A representation of the hospital interior and care spaces.",
+                src: "../img/hospital3.webp",
+                alt: "New Demba Kunda Village Hospital, photograph 3.",
+                caption: "New Demba Kunda Village Hospital, photograph 3.",
+                loading: "lazy"
+            },
+            {
+                src: "../img/New health center 2 .webp",
+                alt: "New Demba Kunda Village Hospital, photograph 4.",
+                caption: "New Demba Kunda Village Hospital, photograph 4.",
                 loading: "lazy"
             }
         ]
