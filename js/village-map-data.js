@@ -93,8 +93,13 @@ villageHistoryData = {
     data.locations = data.locations.concat(additions);
     additions.forEach(function (location) {
         if (!waterSourceMedia || !Object.prototype.hasOwnProperty.call(waterSourceMedia, location.id)) return;
-        location.media = { historicalImages: waterSourceMedia[location.id], currentImages: [], videos: [], audio: [], documents: [] };
+        const videos = location.id === 'ballan-khole' && waterSourceMedia[location.id] ? waterSourceMedia[location.id] : [];
+        location.media = { historicalImages: location.id === 'ballan-khole' ? [] : waterSourceMedia[location.id], currentImages: [], videos: videos, audio: [], documents: [] };
     });
+    const ballanLocation = data.locations.find(function (location) { return location.id === 'ballan-khole'; });
+    if (ballanLocation && waterSourceMedia && waterSourceMedia['ballan-khole']) {
+        ballanLocation.media = { historicalImages: [], currentImages: [], videos: waterSourceMedia['ballan-khole'], audio: [], documents: [] };
+    }
     data.features = [
         { id: 'village-context', category: 'Landscape', type: 'region', positionType: 'illustrative', label: 'New Demba Kunda village context', bounds: [[18, 15], [78, 85]] },
         { id: 'western-wetland-stream', category: 'Water', type: 'line', positionType: 'illustrative', label: 'Water / Stream', points: [[93, 7], [84, 12], [75, 10], [66, 16], [56, 12], [45, 18], [31, 13], [13, 18]], sections: ['Ballan Khole', 'Ba Malalin Khare', 'Khari Khulleh', 'Yelin Debe', 'Kholi Lemmeh', 'Kholi Khore', 'Hayiren Khole'] },

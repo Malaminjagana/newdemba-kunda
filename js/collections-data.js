@@ -1,13 +1,13 @@
 const waterSourceMedia = {
     'khuban-ghede': ['img/khuban ghede1.webp', 'img/khuban ghede 2 .webp', 'img/khuban ghede 3 .webp'],
     'bunkhun-ghede': ['img/Bunkhun-ghede1.webp', 'img/Bunkhun-ghede2.webp'],
-    'darbon-ghede': [],
+    'darbon-ghede': ['img/darbon gehde1.webp', 'img/darbon gehde2.webp', 'img/darbon gehde3.webp'],
     'kaban-ghede': ['img/Kaban ghede1.webp', 'img/Kaban ghede2.webp'],
     'bantan-ghede': ['img/Bantan ghede1.webp', 'img/Bantan ghede2.webp'],
     'mayisin-ghede': ['img/Mayisin ghede2.webp', 'img/Mayisin ghede1.webp', 'img/Mayisin ghede3.webp'],
-    'juman-ghede': [],
+    'juman-ghede': ['img/juman gede1.webp', 'img/juman gede2.webp', 'img/juman gede3.webp'],
     'garankan-ghede': ['img/Garankan ghede1.webp', 'img/Garankan ghede2.webp'],
-    'ballan-khole': [],
+    'ballan-khole': ['img/BALLAN KHOLE AND STREAM.mp4'],
     'water-project-2004': ['img/water-project1.webp', 'img/water-project2.webp']
 };
 
@@ -35,7 +35,7 @@ const museumCollections = {
         { id: 'khilin-dala', name: 'Khilin Dala', description: '', shortDescription: 'Documented village pond.', image: '', imageAlt: 'Historical image coming soon for Khilin Dala', mapLocationId: 'khilin-dala' },
         { id: 'saban-dala', name: 'Saban Dala', description: '', shortDescription: 'Documented village pond.', image: '', imageAlt: 'Historical image coming soon for Saban Dala', mapLocationId: 'saban-dala' },
         { id: 'khumba-janken-dala', name: 'Khumba Janken Dala', description: '', shortDescription: 'Documented village pond.', image: '', imageAlt: 'Historical image coming soon for Khumba Janken Dala', mapLocationId: 'khumba-janken-dala' },
-        { id: 'ballan-khole', name: 'BALLAN KHOLE AND STREAM CROSSINGS', description: 'Ballan Khole is part of the stream southwest of the village, where fishing and swimming took place and white clay was collected for painting and decorating houses. Kholi Khore is another section of the stream west of the village on the road toward Gambisara, where a bridge was built around 1966.', shortDescription: 'Ballan Khole, Kholi Khore and the historic c. 1966 bridge', image: '', imageAlt: 'Historical image coming soon for Ballan Khole and stream crossings', mapLocationId: 'ballan-khole' }
+        { id: 'ballan-khole', name: 'BALLAN KHOLE AND STREAM CROSSINGS', description: 'Ballan Khole is part of the stream southwest of the village, where fishing and swimming took place and white clay was collected for painting and decorating houses. Kholi Khore is another section of the stream west of the village on the road toward Gambisara, where a bridge was built around 1966.', shortDescription: 'Ballan Khole, Kholi Khore and the historic c. 1966 bridge', image: '', imageAlt: 'Historical image coming soon for Ballan Khole and stream crossings', videos: ['img/BALLAN KHOLE AND STREAM.mp4'], mapLocationId: 'ballan-khole' }
     ] }
 };
 

@@ -92,7 +92,15 @@
         const historicalNote = isFarmingRecord && record.historicalNote ? '<p class="collection-copy"><strong>Historical context:</strong> ' + escapeHtml(record.historicalNote) + '</p>' : '';
         const relatedFamilies = isFarmingRecord && record.relatedFamilies && record.relatedFamilies.length ? '<p class="collection-copy"><strong>Documented families:</strong> ' + escapeHtml(record.relatedFamilies.join(', ')) + '</p>' : '';
         const description = record.description ? '<p class="collection-copy">' + escapeHtml(record.description) + '</p>' : '';
-        const detailMedia = isWell && record.images && record.images.length > 1 ? '<div class="collection-media-gallery">' + galleryMarkup(record) + '</div>' : '<p class="collection-media"><i class="far fa-image" aria-hidden="true"></i> Historical photographs and media for this record are not yet documented.</p>';
+        const hasWellGallery = isWell && record.images && record.images.length > 1;
+        const hasPondVideo = isPond && record.videos && record.videos.length;
+        const detailMedia = hasWellGallery
+            ? '<div class="collection-media-gallery">' + galleryMarkup(record) + '</div>'
+            : hasPondVideo
+                ? '<div class="collection-media-gallery collection-video-gallery">' + record.videos.map(function (video, index) {
+                    return '<video class="collection-video" src="' + escapeHtml(video) + '" controls preload="metadata" playsinline aria-label="' + escapeHtml(record.name + ' historical video ' + (index + 1)) + '" style="width:100%; max-width:100%; height:auto; display:block; object-fit:contain;"></video>';
+                }).join('') + '</div>'
+                : '<p class="collection-media"><i class="far fa-image" aria-hidden="true"></i> Historical photographs and media for this record are not yet documented.</p>';
         detail.innerHTML = '<div class="collection-sheet" role="dialog" aria-modal="true" aria-labelledby="collection-detail-title" aria-label="' + detailLabel + '"><header class="collection-modal-header"><p class="museum-kicker">' + detailLabel + '</p><button type="button" class="collection-detail-close" data-close-detail aria-label="' + detailAction + '"><i class="fa fa-times" aria-hidden="true"></i></button></header><div class="collection-sheet-scroll"><div class="' + coverClass + '" data-cover>' + imageMarkup(record) + '<div class="collection-cover-fallback"><i class="fa ' + collection.icon + '" aria-hidden="true"></i><span>Historical image coming soon</span></div></div><div class="collection-sheet-content"><h2 id="collection-detail-title">' + escapeHtml(record.name) + '</h2>' + compound + location + description + historicalNote + relatedFamilies + (isFarmingRecord ? '' : bookCtaMarkup()) + (record.mapLocationId ? '<a class="collection-map-link" href="village-map.html?location=' + encodeURIComponent(record.mapLocationId) + '">View on village map <i class="fa fa-arrow-right" aria-hidden="true"></i></a>' : '') + detailMedia + '</div></div></div>';
         const close = function () { showDetail(); history.replaceState(null, '', window.location.pathname); };
         detail.querySelector('[data-close-detail]').addEventListener('click', close);
