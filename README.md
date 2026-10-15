@@ -177,33 +177,46 @@ The active source of truth is **`js/collections-data.js`**, in `museumCollection
 
 **D. Replace a family image**
 
-1. Put the approved local photograph in `img/families/` using the compound number, for example `img/families/compound-001.webp`.
-2. In the generated family object in `js/collections-data.js`, change only its `image` field to `image: 'img/families/compound-001.webp'`.
-3. The same `record.image` value is used automatically by the Families page card, homepage family card, and detail/modal image. Leave it empty to keep the “Historical image coming soon” placeholder.
+1. Put the approved local photograph in `img/families/` and keep its exact filename.
+2. Add or update the compound's entry in the `familyMedia` object in `js/collections-data.js`, keyed by its stable ID (for example, `compound-001`), and set its `image` field to the exact relative path.
+3. The same `record.image` value is used by the Families archive card, homepage card when present, detail cover and Media section, and the map panel. Leave it empty to keep the “Historical image coming soon” placeholder.
 
-**E. Add a new family**
+**E. Add a family image and video**
 
-1. Add a new row to `museumCollections.families.records` with five values in this order: unique ID, displayed name, compound number, full description, short description.
-2. Add the ID to the `neighbourhoods` object in the conversion code if its neighbourhood is known.
-3. Ensure its generated `mapLocationId` is unique. The map automatically creates a matching Family Compound from every family object.
-4. Add an empty `image` field to the generated object; assign a photograph later using the image workflow above.
+1. Copy both existing media files into `img/families/` without changing their filenames.
+2. In `js/collections-data.js`, add an entry to `familyMedia` keyed by the record's stable ID. Set `name`, `image`, and `video` to the displayed family name and exact project-relative paths, for example:
+   ```js
+   'compound-084': {
+       name: 'Example Family',
+       image: 'img/families/exact-image-name.webp',
+       video: 'img/families/exact-video-name.mp4'
+   }
+   ```
+3. The archive detail view displays the image and a playable video; the generated map location receives the same media automatically. Existing map locations link back to `families.html?families=<family-id>`.
+4. To add a new family record as well, append its documented name to the `compoundNames` array. The record and illustrative map marker are generated from that list; do not duplicate records or add a manual marker. Add a homepage card only if the family should also appear in the separate, hand-authored homepage grid.
 
-**F. Remove a family**
+**F. Add a new family record**
 
-1. Remove its row from `museumCollections.families.records`.
+1. Append its documented name to `compoundNames` in `js/collections-data.js`.
+2. Add the family and exact media filenames to `familyMedia` using the generated stable ID, such as `compound-084`.
+3. The map automatically creates a matching Family Compound using the generated `mapLocationId`. Map positions are illustrative; do not treat them as verified coordinates.
+
+**G. Remove a family**
+
+1. Remove its name from `compoundNames`.
 2. Its generated family card and dynamically generated map compound disappear.
 3. Check links in `js/village-map-data.js` and old HTML pages for hard-coded references to that ID before removal.
 
 ## Family Image System
 
 - **Image folder:** `img/families/`
-- **Active family image field:** `image` in the final family object created in `js/collections-data.js`.
-- **Naming convention:** `compound-001.webp`, `compound-002.webp`, and so on. This remains scalable beyond compound 083.
+- **Active family media:** Entries in `familyMedia` in `js/collections-data.js`, keyed by each record's stable ID.
+- **Paths:** The `image` and `video` values must match the filenames in `img/families/` exactly, including capitalization, spaces, underscores, and punctuation.
 - **Placeholder:** An empty `image` field, or a missing image file, displays “Historical image coming soon” without leaving a broken image icon or empty image box.
-- **Reuse:** A populated `record.image` is rendered automatically in the Families page card, homepage family card, and detail/modal image. Card images remain lazy-loaded; detail/modal images load when opened.
-- **Local files, not URLs:** Active family photographs use local relative paths. No external image URL is used by the active family collection.
+- **Reuse:** A populated `record.image` and `record.videos` are reused in the Families archive, family detail Media section, and corresponding map location. Family videos have playback controls.
+- **Local files, not URLs:** Family media uses local relative paths. No external media URL is used by the active family collection.
 
-To add a photograph for Compound No. 1 later, store it as `img/families/compound-001.webp`, then change only that compound's `image` field to `image: 'img/families/compound-001.webp'`. Keep its `familyId`, `mapLocationId`, relationships, and historical content unchanged.
+To add media later, preserve the original files, then set the matching record's `image` and `video` paths in `familyMedia`. Keep its stable ID, `familyId`, `mapLocationId`, relationships, and historical content unchanged.
 
 ## Village Map
 
@@ -404,7 +417,7 @@ The `img/families/` folder is reserved for compound photographs. There are no se
 - Root pages generally use `img/file-name.jpg`.
 - Legacy `heritage-data.js` uses `../img/file-name.jpg`, even though `heritage.html` is at the project root. This is a path convention to verify before maintaining legacy heritage images.
 - The active family collection uses `record.image`, with paths such as `img/families/compound-001.webp`.
-- Active map location media arrays are empty/not populated.
+- Family Compound locations reuse their family's image and video media arrays.
 
 ### Missing Referenced Images
 
@@ -547,3 +560,21 @@ Want to change the mobile layout?
 - Twenty-three referenced image files are absent from `img/`; they are mainly required by legacy/static template pages. Do not assume an absent reference is an approved replacement photo.
 - `data/` is empty. It is not currently a source for content.
 - There is no reusable component framework or build pipeline. Reuse is achieved with common JavaScript render functions and shared CSS rather than framework components.
+
+
+
+
+Adding another family’s image and video manually
+_________________________________________
+
+Put both media files in img/families/. Keep their filenames unchanged.
+In collections-data.js, add an entry to familyMedia using that family’s existing record ID and the exact filenames:
+
+'compound-084': {
+    name: 'Example Family',
+    image: 'img/families/exact-image-name.webp',
+    video: 'img/families/exact-video-name.mp4'
+}  For an existing family, use its existing ID rather than creating another record.
+For a new family record, add its name to compoundNames as well. The archive record and map marker are generated from that list; the family’s media is connected through familyMedia.
+The archive and map use those paths automatically. Add a card in index.html only if you also want the new family shown in the separate homepage grid.
+Keep capitalization, spaces, underscores, and punctuation in filenames exact

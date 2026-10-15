@@ -94,7 +94,12 @@
         const description = record.description ? '<p class="collection-copy">' + escapeHtml(record.description) + '</p>' : '';
         const hasWellGallery = isWell && record.images && record.images.length > 1;
         const hasPondVideo = isPond && record.videos && record.videos.length;
-        const detailMedia = hasWellGallery
+        const hasFamilyMedia = key === 'families' && (record.image || (record.videos && record.videos.length));
+        const detailMedia = hasFamilyMedia
+            ? '<section class="collection-family-media" aria-labelledby="family-media-title"><h3 id="family-media-title">Media</h3><div class="collection-family-media-grid">' + (record.image ? '<img src="' + escapeHtml(record.image) + '" alt="' + escapeHtml(record.imageAlt || record.name + ' family photograph') + '" loading="lazy" class="collection-family-media-image">' : '') + (record.videos || []).map(function (video, index) {
+                return '<video class="collection-family-media-video" src="' + escapeHtml(video) + '" controls preload="metadata" playsinline aria-label="' + escapeHtml(record.name + ' video ' + (index + 1)) + '"></video>';
+            }).join('') + '</div></section>'
+            : hasWellGallery
             ? '<div class="collection-media-gallery">' + galleryMarkup(record) + '</div>'
             : hasPondVideo
                 ? '<div class="collection-media-gallery collection-video-gallery">' + record.videos.map(function (video, index) {

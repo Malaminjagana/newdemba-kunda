@@ -98,7 +98,7 @@ villageHistoryData = {
     });
     const ballanLocation = data.locations.find(function (location) { return location.id === 'ballan-khole'; });
     if (ballanLocation && waterSourceMedia && waterSourceMedia['ballan-khole']) {
-        ballanLocation.media = { historicalImages: [], currentImages: [], videos: waterSourceMedia['ballan-khole'], audio: [], documents: [] };
+        ballanLocation.media = { historicalImages: ['img/Ponds/BALLAN_KHOLE.webp'], currentImages: [], videos: waterSourceMedia['ballan-khole'], audio: [], documents: [] };
     }
     data.features = [
         { id: 'village-context', category: 'Landscape', type: 'region', positionType: 'illustrative', label: 'New Demba Kunda village context', bounds: [[18, 15], [78, 85]] },
@@ -120,7 +120,7 @@ villageHistoryData = {
     }
     families.forEach(function (family, index) {
         const position = [31 + (index % 7) * 6.5, 30 + Math.floor(index / 7) * 10];
-        addLocation({ id: family.mapLocationId, name: family.name, category: 'Family Compound', markerIcon: 'fa-home', mapPosition: position, positionType: 'illustrative', coordinates: null, description: family.description, historicalSignificance: 'This family compound is represented with an illustrative map position, not a verified geographic coordinate.', people: [], bookReference: { source: family.source }, storyIds: [], familyId: family.familyId, neighborhood: family.neighborhood, compoundNumber: family.compoundNumber });
+        addLocation({ id: family.mapLocationId, name: family.name, category: 'Family Compound', markerIcon: 'fa-home', mapPosition: position, positionType: 'illustrative', coordinates: null, description: family.description, historicalSignificance: 'This family compound is represented with an illustrative map position, not a verified geographic coordinate.', people: [], bookReference: { source: family.source }, storyIds: [], familyId: family.familyId, neighborhood: family.neighborhood, compoundNumber: family.compoundNumber, media: { historicalImages: [], currentImages: family.image ? [family.image] : [], videos: family.videos || [], audio: [], documents: [] } });
     });
     traditionalSchools.forEach(function (name, index) {
         const matchingFamily = families.find(function (family) { return family.name.toLowerCase().indexOf(name.toLowerCase()) >= 0 || name.toLowerCase().indexOf(family.name.toLowerCase().replace(' family ', ' ')) >= 0; });

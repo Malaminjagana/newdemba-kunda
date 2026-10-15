@@ -53,9 +53,9 @@
             description: '[ADD HISTORICAL DESCRIPTION FOR 2026]',
             image: '[ADD HISTORICAL IMAGE]', video: '[ADD HISTORICAL VIDEO]', audio: '[ADD HISTORICAL AUDIO]', related: '[ADD RELATED PEOPLE OR EVENTS]'
         },
-        '1920': {
-            description: '[ADD HISTORICAL DESCRIPTION FOR 1920]',
-            image: '[ADD HISTORICAL IMAGE]', video: '[ADD HISTORICAL VIDEO]', audio: '[ADD HISTORICAL AUDIO]', related: '[ADD RELATED PEOPLE OR EVENTS]'
+        '1905/1909': {
+            description: '[ADD HISTORICAL DESCRIPTION FOR 1905/1909]',
+            image: 'img/timeline_1905_1909.webp', video: '[ADD HISTORICAL VIDEO]', audio: '[ADD HISTORICAL AUDIO]', related: '[ADD RELATED PEOPLE OR EVENTS]'
         },
         '1930': {
             description: '[ADD HISTORICAL DESCRIPTION FOR 1930]',
@@ -119,7 +119,15 @@
 
         $('#timelineModalYear').text(year);
         $('#timelineModalDescription').text(record.description);
-        $('#timelineModalImage').text(record.image);
+        if (record.image && record.image.indexOf('[ADD ') !== 0) {
+            $('#timelineModalImage').empty().append($('<img>', {
+                src: record.image,
+                alt: 'Historical image for ' + year,
+                class: 'img-fluid'
+            }));
+        } else {
+            $('#timelineModalImage').text(record.image);
+        }
         $('#timelineModalVideo').text(record.video);
         $('#timelineModalAudio').text(record.audio);
         $('#timelineModalRelated').text(record.related);

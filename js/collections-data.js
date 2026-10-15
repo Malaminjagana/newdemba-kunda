@@ -1,14 +1,14 @@
 const waterSourceMedia = {
-    'khuban-ghede': ['img/khuban ghede1.webp', 'img/khuban ghede 2 .webp', 'img/khuban ghede 3 .webp'],
-    'bunkhun-ghede': ['img/Bunkhun-ghede1.webp', 'img/Bunkhun-ghede2.webp'],
-    'darbon-ghede': ['img/darbon gehde1.webp', 'img/darbon gehde2.webp', 'img/darbon gehde3.webp'],
-    'kaban-ghede': ['img/Kaban ghede1.webp', 'img/Kaban ghede2.webp'],
-    'bantan-ghede': ['img/Bantan ghede1.webp', 'img/Bantan ghede2.webp'],
-    'mayisin-ghede': ['img/Mayisin ghede2.webp', 'img/Mayisin ghede1.webp', 'img/Mayisin ghede3.webp'],
-    'juman-ghede': ['img/juman gede1.webp', 'img/juman gede2.webp', 'img/juman gede3.webp'],
-    'garankan-ghede': ['img/Garankan ghede1.webp', 'img/Garankan ghede2.webp'],
-    'ballan-khole': ['img/BALLAN KHOLE AND STREAM.mp4'],
-    'water-project-2004': ['img/water-project1.webp', 'img/water-project2.webp']
+    'khuban-ghede': ['img/wells/khuban ghede1.webp', 'img/wells/khuban ghede 2 .webp', 'img/wells/khuban ghede 3 .webp'],
+    'bunkhun-ghede': ['img/wells/Bunkhun-ghede1.webp', 'img/wells/Bunkhun-ghede2.webp'],
+    'darbon-ghede': ['img/wells/darbon gehde1.webp', 'img/wells/darbon gehde2.webp', 'img/wells/darbon gehde3.webp'],
+    'kaban-ghede': ['img/wells/Kaban ghede1.webp', 'img/wells/Kaban ghede2.webp'],
+    'bantan-ghede': ['img/wells/Bantan ghede1.webp', 'img/wells/Bantan ghede2.webp'],
+    'mayisin-ghede': ['img/wells/Mayisin ghede2.webp', 'img/wells/Mayisin ghede1.webp', 'img/wells/Mayisin ghede3.webp'],
+    'juman-ghede': ['img/wells/juman gede1.webp', 'img/wells/juman gede2.webp', 'img/wells/juman gede3.webp'],
+    'garankan-ghede': ['img/wells/Garankan ghede1.webp', 'img/wells/Garankan ghede2.webp'],
+    'ballan-khole': ['img/Ponds/BALLAN KHOLE AND STREAM.mp4'],
+    'water-project-2004': ['img/wells/water-project1.webp', 'img/wells/water-project2.webp']
 };
 
 const museumCollections = {
@@ -35,7 +35,8 @@ const museumCollections = {
         { id: 'khilin-dala', name: 'Khilin Dala', description: '', shortDescription: 'Documented village pond.', image: '', imageAlt: 'Historical image coming soon for Khilin Dala', mapLocationId: 'khilin-dala' },
         { id: 'saban-dala', name: 'Saban Dala', description: '', shortDescription: 'Documented village pond.', image: '', imageAlt: 'Historical image coming soon for Saban Dala', mapLocationId: 'saban-dala' },
         { id: 'khumba-janken-dala', name: 'Khumba Janken Dala', description: '', shortDescription: 'Documented village pond.', image: '', imageAlt: 'Historical image coming soon for Khumba Janken Dala', mapLocationId: 'khumba-janken-dala' },
-        { id: 'ballan-khole', name: 'BALLAN KHOLE AND STREAM CROSSINGS', description: 'Ballan Khole is part of the stream southwest of the village, where fishing and swimming took place and white clay was collected for painting and decorating houses. Kholi Khore is another section of the stream west of the village on the road toward Gambisara, where a bridge was built around 1966.', shortDescription: 'Ballan Khole, Kholi Khore and the historic c. 1966 bridge', image: '', imageAlt: 'Historical image coming soon for Ballan Khole and stream crossings', videos: ['img/BALLAN KHOLE AND STREAM.mp4'], mapLocationId: 'ballan-khole' }
+        { id: 'ballan-khole', name: 'BALLAN KHOLE AND STREAM CROSSINGS', description: 'Ballan Khole is part of the stream southwest of the village, where fishing and swimming took place and white clay was collected for painting and decorating houses. Kholi Khore is another section of the stream west of the village on the road toward Gambisara, where a bridge was built around 1966.', shortDescription: 'Ballan Khole, Kholi Khore and the historic c. 1966 bridge', image: 'img/Ponds/BALLAN_KHOLE.webp', imageAlt: 'Ballan Khole, Kholi Khore and the historic c. 1966 bridge', videos: ['img/Ponds/BALLAN KHOLE AND STREAM.mp4'
+        ], mapLocationId: 'ballan-khole' }
     ] }
 };
 
@@ -98,12 +99,12 @@ museumCollections.families.records = museumCollections.families.records.map(func
         'SIMAKHA KUNDA  IN JIMBA', "KHONTEH KUNDA  LEMMEH HALIMA KHONTEH'S FAMILY",
         'NJIE KUNDA  IN JIMBA', 'KEITA KUNDA / KONATE KUNDA  IN JIMBA', 'TAMBADOU KUNDA',
         'FOFANA KUNDA', 'SANYANG KUNDA', 'DAMBELE KUNDA', 'BERTEH KUNDA', 'DAMBELE KUNDA',
-        'SAKHANOKHORA - MALAMIN AND JINDE FAMILY', 'CAMARA KUNDA - KAGORTA OBAYI', 'JAMIGGERA',
+        'SAKHANOKHORA MALAMIN AND JINDE FAMILY', 'CAMARA KUNDA KAGORTA OBAYI', 'JAMIGGERA',
         "KHONTEH KUNDA  MODY NYINA KHONTEH'S FAMILY", 'MAKHANERA KUNDA', 'JALLOW FAMILY',
         'JAWARA FAMILY', "KHONTEH KUNDA  CHIMA KHONTEH'S FAMILY",
         "CAMARA KUNDA  WUJARI KANNI CAMARA'S FAMILY", "SIDIBEH KUNDA  DARBI SIDIBEH'S FAMILY",
         "KHONTEH KUNDA  PA BUNA KHONTEH'S COMPOUND", "FOFANA KUNDA  IBRAHIMA FOFANA'S COMPOUND",
-        "SISOKHO KUNDA - BOULLY SISOKHO'S FAMILY", "JAWO KUNDA - SIKKA JAWO AND SAMBA JAWO'S FAMILIES",
+        "SISOKHO KUNDA BOULLY SISOKHO'S FAMILY", "JAWO KUNDA SIKKA JAWO AND SAMBA JAWO'S FAMILIES",
         'SINGHATEH KUNDA', "NJIE KUNDA  JULA NJIE'S FAMILY", 'HATTY KUNDA / HYDARA KUNDA',
         'DUKURELLA', 'JABBY KUNDA  BESIDE SABALLY KUNDA', 'KEITA KUNDA', 'SIDIBEH KUNDA',
         "KURUBALLY KUNDA  DANDA KURUBALLY'S FAMILY", 'SIDIBEH KUNDA  BESIDE BAKHAGA KUNDA',
@@ -115,12 +116,40 @@ museumCollections.families.records = museumCollections.families.records.map(func
         'jaganara-khore-compound', 'billen-chakeya-compound', 'babuchiya-compound', 'dukurella-compound',
         'jabby-kunda-compound', 'hydara-kunda-compound', 'numuyel-jaganara-compound', 'khonteh-kunda-compound',
         'kagorta-khore-compound', 'sakhoneh-kunda-compound', 'sabally-kunda-compound', 'kaba-kunda-lemmeh-compound',
-        'kaba-kunda-khore-compound', 'darbo-kunda-compound', 'drammeh-kunda-compound'
+        'kaba-kunda-khore-compound', 'darbo-kunda-compound', null
     ];
     const sharedCompoundNumbers = {
         35: [36], 36: [35], 42: [43], 43: [42], 48: [49], 49: [48],
         50: [51], 51: [50], 52: [53], 53: [52], 59: [60], 60: [59],
         67: [], 70: [71], 71: [70], 73: [74], 74: [73], 81: [82], 82: [81]
+    };
+    const familyMedia = {
+        'compound-001': { name: 'Jaganara Khore', image: 'img/families/jaganara_khore.webp', video: 'img/families/jaganara_khore.mp4' },
+        'compound-003': { name: 'Babuchiya', image: 'img/families/babuchiya.webp', video: 'img/families/babuchiya.mp4' },
+        'compound-004': { name: 'Dukureh Family Dukurella', image: 'img/families/dukureh family_dukurella.webp', video: 'img/families/dukureh family_dukurella.mp4' },
+        'compound-006': { name: 'Hydara Kunda Family', image: 'img/families/hydara kunda family.webp', video: 'img/families/hydara kunda family.webp.mp4' },
+        'compound-007': { name: 'Numuyel Jaganara', image: 'img/families/numuyel_jaganara.webp', video: 'img/families/numuyel_jaganara.mp4' },
+        'compound-009': { name: 'Kagorta Khore', image: 'img/families/kagorta_khore.webp', video: 'img/families/kagorta_khore.mp4' },
+        'compound-010': { name: 'Sakhoneh Kunda Kusantago', image: 'img/families/sakhoneh kunda_Kusantago.webp', video: 'img/families/sakhoneh kunda_Kusantago.mp4' },
+        'compound-012': { name: 'Kaba Kunda Lemmeh', image: 'img/families/kaba kunda_lemmeh.webp', video: 'img/families/kaba kunda_lemmeh.mp4' },
+        'compound-013': { name: 'Kaba Kunda Khore', image: 'img/families/kaba kunda_khore.webp', video: 'img/families/kaba kunda_khore..mp4' },
+        'compound-016': { name: 'Drammeh Kunda', image: 'img/families/Drammeh kunda.webp', video: 'img/families/Drammeh kunda.mp4' },
+        'compound-011': { name: 'Sabally Kunda', image: 'img/families/sabally_kunda.webp', video: 'img/families/sabally_kunda.mp4' },
+        'compound-018': { name: 'Jeju Kunda', image: 'img/families/Jeju kunda.webp', video: 'img/families/Jeju kunda.mp4' },
+        'compound-022': { name: 'Sisokho Kunda Kinda Sisokhos Family', image: 'img/families/sisokho_kunda_kinda_sisokhos family.webp', video: 'img/families/sisokho_kunda_kinda_sisokhos family.mp4' },
+        'compound-024': { name: 'Dukkara Kunda', image: 'img/families/Dukkara_kunda.webp', video: 'img/families/Dukkara_kunda..mp4' },
+        'compound-025': { name: 'Jankha Kunda', image: 'img/families/jankha_kunda.webp', video: 'img/families/jankha_kunda.mp4' },
+        'compound-023': { name: 'Camara Kunda Muhammad Khumba Family', image: 'img/families/camara_kunda_mouhammad_khumba Family.webp', video: 'img/families/camara_kunda_mouhammad_khumba Family.mp4' },
+        'compound-030': { name: 'Waggeh Kunda Khore', image: 'img/families/Waggeh_kunda khore.webp', video: 'img/families/Waggeh_kunda khore.mp4' },
+        'compound-031': { name: 'Waggeh Kunda Lemmeh', image: 'img/families/waggeh_kunda_lemmeh.webp', video: 'img/families/waggeh_kunda_lemmeh..mp4' },
+        'compound-034': { name: 'Gherewou Kunda', image: 'img/families/Gherewou_kunda.webp', video: 'img/families/Gherewou_kunda.mp4' },
+        'compound-032': { name: 'Fofana Kunda Ali Fofana’s Family', image: 'img/families/Fofana kunda Ali fofanaś family’s.webp', video: 'img/families/Fofana kunda Ali fofanaś family’s.mp4' },
+        'compound-036': { name: 'Sambou Kunda', image: 'img/families/Sambou_kunda.webp', video: 'img/families/Sambou_kunda.mp4' },
+        'compound-027': { name: 'Marra Kunda', image: 'img/families/Marra_kunda.webp', video: 'img/families/Marra_kunda.mp4' },
+        'compound-019': { name: 'Jabby Kunda Domeh Jabby and Kibilly Jabby Family', image: 'img/families/JABBY KUNDA DOMEH JABBY AND KIBILLY JABBY FAMILY.webp', video: 'img/families/JABBY KUNDA DOMEH JABBY AND KIBILLY JABBY FAMILY.mp4' },
+        'compound-029': { name: 'Sidibeh Kunda Children of Ndungu Kurubally', image: 'img/families/SIDIBEH KUNDA - CHILDREN OF NDUNGU KURUBALLY.webp', video: 'img/families/SIDIBEH KUNDA - CHILDREN OF NDUNGU KURUBALLY.mp4' },
+        'compound-078': { name: "KURUBALLY KUNDA BILAL TENEH'S FAMILY", image: "img/families/KURUBALLY KUNDA_BILAL TENEH'S FAMILY.webp", video: "img/families/KUNDA_BILAL TENEH'S FAMILY.mp4" },
+        'compound-075': { name: "KURUBALLY KUNDA DANDA KURUBALLY'S FAMILY", image: "img/families/KURUBALLY KUNDA_DANDA KURUBALLY'S FAMILY.webp", video: "img/families/KURUBALLY KUNDA DANDA KURUBALLY'S FAMILY.mp4" }
     };
     const existingByName = {};
     museumCollections.families.records.forEach(function (record) { existingByName[record.name] = record; });
@@ -128,20 +157,23 @@ museumCollections.families.records = museumCollections.families.records.map(func
         const number = index + 1;
         const existing = existingByName[name];
         const stableId = 'compound-' + String(number).padStart(3, '0');
+        const media = familyMedia[stableId];
         return {
             id: stableId,
             familyId: stableId,
-            name: name,
+            name: media ? media.name : name,
             compoundNumber: 'Compound No. ' + number,
             neighborhood: existing ? existing.neighborhood : 'Neighbourhood awaiting verification',
             description: existing ? existing.description : '',
             shortDescription: existing ? existing.shortDescription : 'Documented compound record',
-            image: '',
+            image: media ? media.image : '',
+            imageAlt: media ? media.name + ' family photograph' : '',
+            videos: media ? [media.video] : [],
             source: museumCollections.families.source,
             relatedPeople: existing ? existing.relatedPeople : [],
             relatedPlaces: existing ? existing.relatedPlaces : [],
             sharedCompoundNumbers: sharedCompoundNumbers[number] || [],
-            mapLocationId: legacyMapIds[index] || stableId + '-map'
+            mapLocationId: stableId === 'compound-016' ? 'drammeh-kunda-compound' : legacyMapIds[index] || stableId + '-map'
         };
     });
 }());
