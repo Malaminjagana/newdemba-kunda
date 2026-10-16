@@ -91,6 +91,19 @@ villageHistoryData = {
     ['Ha Dugu', 'Dala Gilleh', 'American Diga', 'Khole Halle Giden Kamma', 'Hulundumbu', 'Simbanou'].forEach(function (name, index) { add('forest-' + index, name, 'Forests', 'fa-tree', [13 + index * 14, 91], 'A nearby forest area associated with the village landscape.', 'This position is illustrative and represents a forest landscape, not a verified boundary.'); });
     add('kholi-khore-bridge', 'Kholi Khore Bridge', 'Historic Infrastructure', 'fa-archway', [12, 43], 'A bridge at Kholi Khore was built around 1966.', 'This bridge is connected to the Kholi Khore stream section; its map position is illustrative.');
     data.locations = data.locations.concat(additions);
+    const dalaGillehLocation = data.locations.find(function (location) { return location.id === 'dala-gilleh'; });
+    const dalaGillehPond = typeof museumCollections !== 'undefined' && museumCollections.ponds
+        ? museumCollections.ponds.records.find(function (pond) { return pond.id === 'dala-gilleh'; })
+        : null;
+    if (dalaGillehLocation && dalaGillehPond) {
+        dalaGillehLocation.media = {
+            historicalImages: [],
+            currentImages: dalaGillehPond.images || (dalaGillehPond.image ? [dalaGillehPond.image] : []),
+            videos: dalaGillehPond.videos || [],
+            audio: [],
+            documents: []
+        };
+    }
     additions.forEach(function (location) {
         if (!waterSourceMedia || !Object.prototype.hasOwnProperty.call(waterSourceMedia, location.id)) return;
         const videos = location.id === 'ballan-khole' && waterSourceMedia[location.id] ? waterSourceMedia[location.id] : [];
