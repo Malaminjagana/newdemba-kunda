@@ -75,14 +75,18 @@ villageHistoryData = {
     ].forEach(function (entry) { add(entry[0], entry[1], 'Wells', 'fa-tint', entry[2], entry[3], entry[4]); });
     add('ballan-khole', 'BALLAN KHOLE AND STREAM CROSSINGS', 'Water', 'fa-water', [13, 43], 'Ballan Khole is part of the stream southwest of the village, where fishing and swimming took place and white clay was collected for painting and decorating houses. Kholi Khore is another section of the stream west of the village on the road toward Gambisara, where a bridge was built around 1966.', 'Ballan Khole and Kholi Khore are documented on printed pages 284-285.');
     add('water-project-2004', 'MODERN WATER PROJECT', 'Historic Infrastructure', 'fa-tint', [49, 52], 'A central borehole, two large water tanks holding 60,000 liters each and 74 water taps formed the village water supply project, which began operating in October 2004.');
-    [
-        ['misidin-kura', 'MISIDIN KURA', [34, 38], 'West of the Central Mosque, where elders rested and waited for prayers and funeral meetings.'],
-        ['seyinkan-kura', 'SEYINKAN KURA', [29, 51], 'At the southern corner of Seyinka Field next to Khuban Ghede.'],
-        ['mamadin-kura', 'MAMADIN KURA', [19, 48], 'At the western end of Seyinka Field, named after Mamadi Bouba Kurubally.'],
-        ['kaban-kura', 'KABAN KURA', [57, 67], 'South of the Central Mosque and next to Kaban Ghede.'],
-        ['bantan-kura', 'BANTAN KURA', [31, 73], 'At the entrance of Kagorta Khore and opposite Bantan Ghede.'],
-        ['charappun-kura', 'CHARAPPUN KURA', [57, 16], 'At the entrance of Waggeh Kunda in Charappu.']
-    ].forEach(function (entry) { add(entry[0], entry[1], 'Public Spaces / Bantaba', 'fa-users', entry[2], entry[3]); });
+    const publicPlaceMapPositions = {
+        'misidin-kura': [34, 38],
+        'seyinkan-kura': [29, 51],
+        'mamadin-kura': [19, 48],
+        'kaban-kura': [57, 67],
+        'bantan-kura': [31, 73],
+        'charappun-kura': [57, 16]
+    };
+    publicGatheringPlaces.forEach(function (place) {
+        add(place.mapLocationId, place.name, 'Public Spaces / Bantaba', 'fa-users', publicPlaceMapPositions[place.mapLocationId], place.description, 'The history records this relative location; its schematic map marker is illustrative and awaits local confirmation.');
+        additions[additions.length - 1].publicGatheringPlaceId = place.id;
+    });
     [
         ['dala-gilleh', 'Dala Gilleh', [13, 61], 'A pond and forest area on the Gambisara road.'],
         ['hurunkun-dala', 'Hurunkun Dala', [20, 67], 'A village pond.'], ['dala-lemmeh', 'Dala Lemmeh', [26, 60], 'A village pond.'], ['jamban-dala', 'Jamban Dala', [18, 74], 'A village pond.'], ['simakhan-dala', 'Simakhan Dala', [25, 82], 'A village pond.'], ['kumma-kejugun-dala', 'Kumma Kejugun Dala', [15, 84], 'A village pond.'], ['dala-khore', 'Dala Khore', [8, 72], 'A village pond.'], ['sikhou-hounen-dala', 'Sikhou Hounen Dala', [11, 66], 'A village pond.'], ['khilin-dala', 'Khilin Dala', [20, 89], 'A village pond.'], ['saban-dala', 'Saban Dala', [29, 87], 'A village pond.'], ['khumba-janken-dala', 'Khumba Janken Dala', [32, 82], 'A village pond.']
@@ -133,7 +137,7 @@ villageHistoryData = {
     }
     families.forEach(function (family, index) {
         const position = [31 + (index % 7) * 6.5, 30 + Math.floor(index / 7) * 10];
-        addLocation({ id: family.mapLocationId, name: family.name, category: 'Family Compound', markerIcon: 'fa-home', mapPosition: position, positionType: 'illustrative', coordinates: null, description: family.description, historicalSignificance: 'This family compound is represented with an illustrative map position, not a verified geographic coordinate.', people: [], bookReference: { source: family.source }, storyIds: [], familyId: family.familyId, neighborhood: family.neighborhood, compoundNumber: family.compoundNumber, media: { historicalImages: [], currentImages: family.image ? [family.image] : [], videos: family.videos || [], audio: [], documents: [] } });
+        addLocation({ id: family.mapLocationId, name: family.name, category: 'Family Compound', markerIcon: 'fa-home', mapPosition: position, positionType: 'illustrative', coordinates: null, description: family.description, historicalSignificance: 'This family compound is represented with an illustrative map position, not a verified geographic coordinate.', people: [], bookReference: { source: family.source }, storyIds: [], familyId: family.familyId, neighborhood: family.neighborhood, compoundNumber: family.compoundNumber, media: { historicalImages: [], currentImages: family.images && family.images.length ? family.images : family.image ? [family.image] : [], videos: family.videos || [], audio: [], documents: [] } });
     });
     traditionalSchools.forEach(function (name, index) {
         const matchingFamily = families.find(function (family) { return family.name.toLowerCase().indexOf(name.toLowerCase()) >= 0 || name.toLowerCase().indexOf(family.name.toLowerCase().replace(' family ', ' ')) >= 0; });

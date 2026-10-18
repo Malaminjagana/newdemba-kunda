@@ -154,6 +154,18 @@
         return villageHistoryData.events.filter(function (event) { return event.locationId === locationId; });
     }
 
+    function publicGatheringPlaceForLocation(location) {
+        if (!location.publicGatheringPlaceId) return null;
+        return window.publicGatheringPlaces.find(function (place) { return place.id === location.publicGatheringPlaceId; });
+    }
+
+    function publicGatheringPlaceMediaMarkup(place) {
+        const image = place.image
+            ? '<img class="history-public-place-image" data-public-place-image src="' + escapeHtml(place.image) + '" alt="' + escapeHtml(place.name + ' historical photograph') + '" loading="lazy">'
+            : '<div class="history-public-place-image-placeholder" role="img" aria-label="Historical image coming soon">Historical image coming soon.</div>';
+        return '<section class="history-media-section"><strong>Historical image</strong><div class="history-public-place-media">' + image + '</div></section>';
+    }
+
     function categoryIcon(category) {
         const icons = { 'Community history': 'fa-users', 'Religion and scholarship': 'fa-mosque', Education: 'fa-school', 'Land and water': 'fa-tint', 'Community life': 'fa-seedling', 'Lost history': 'fa-landmark', Neighbourhoods: 'fa-home', 'Neighbouring Village': 'fa-map-signs', 'Nearest City': 'fa-city', 'Family Compound': 'fa-home', 'Traditional Schools': 'fa-school', 'Education / Historical Institution': 'fa-university', Wells: 'fa-tint', 'Public Spaces / Bantaba': 'fa-users', 'Ponds / Water Features': 'fa-water', Farmlands: 'fa-seedling', Forests: 'fa-tree', 'Historic Infrastructure': 'fa-archway', Water: 'fa-water', Road: 'fa-road', Landscape: 'fa-mountain' };
         return icons[category] || 'fa-map-marker-alt';
@@ -285,12 +297,24 @@
         panel.classList.remove('is-empty');
         panel.classList.toggle('is-minimized', isPanelMinimized);
         const archiveLinks = (location.storyIds || []).map(function (storyId) { return '<a class="history-event-link" href="museum.html?story=' + encodeURIComponent(storyId) + '">Read connected archive story</a>'; }).join('');
+        const publicPlace = publicGatheringPlaceForLocation(location);
+        const publicPlaceLink = publicPlace ? '<a class="history-event-link" href="museum.html#public-gathering-place-' + encodeURIComponent(publicPlace.id) + '">View this place in Public Gathering Places <i class="fa fa-arrow-right" aria-hidden="true"></i></a>' : '';
         const familyLink = location.familyId ? '<a class="history-event-link" href="families.html?families=' + encodeURIComponent(location.familyId) + '">View family <i class="fa fa-arrow-right" aria-hidden="true"></i></a>' : '';
         const relatedLinks = (location.relatedLocationIds || []).map(function (locationId) {
             const relatedLocation = locationById(locationId);
             return relatedLocation ? '<button type="button" class="history-event-link" data-related-location-id="' + escapeHtml(relatedLocation.id) + '">' + escapeHtml(relatedLocation.name) + ' <i class="fa fa-arrow-right" aria-hidden="true"></i></button>' : '';
         }).join('');
-        panel.innerHTML = '<div class="history-panel-controls"><button type="button" class="history-panel-minimize" data-minimize-panel aria-label="' + (isPanelMinimized ? 'Expand location information' : 'Minimize location information') + '" title="' + (isPanelMinimized ? 'Expand' : 'Minimize') + '"><i class="fa ' + (isPanelMinimized ? 'fa-expand-alt' : 'fa-minus') + '" aria-hidden="true"></i></button><button type="button" class="history-panel-close" data-close-panel aria-label="Close location information" title="Close"><i class="fa fa-times" aria-hidden="true"></i></button></div><div class="history-panel-heading"><span class="history-panel-kicker"><i class="fa fa-map-marker-alt me-1" aria-hidden="true"></i>' + escapeHtml(location.category) + '</span><h2>' + escapeHtml(location.name) + '</h2></div><div class="history-panel-body"><div class="history-fact"><strong>About this place</strong><span>' + escapeHtml(location.description) + '</span></div><div class="history-fact"><strong>Historical significance</strong><span>' + escapeHtml(location.historicalSignificance) + '</span></div>' + relatedEventsMarkup(location) + '<div class="history-fact"><strong>People connected to this place</strong><span>' + (location.people.length ? location.people.map(escapeHtml).join(', ') : 'Information not yet documented.') + '</span></div>' + (location.neighborhood ? '<div class="history-fact"><strong>Neighbourhood</strong><span>' + escapeHtml(location.neighborhood) + '</span></div>' : '') + (relatedLinks ? '<div class="history-fact"><strong>Connected places</strong>' + relatedLinks + '</div>' : '') + familyLink + '<div class="history-fact"><strong>Archive stories</strong>' + archiveLinks + '</div><div class="history-fact"><strong>History Book</strong>' + bookMarkup(location.bookReference) + '</div>' + mediaMarkup(location.media || {}, Boolean(location.familyId), location.id === 'ballan-khole' || location.id === 'dala-gilleh' ? location.id : null) + mapsActionMarkup(location) + '</div>';
+        panel.innerHTML = '<div class="history-panel-controls"><button type="button" class="history-panel-minimize" data-minimize-panel aria-label="' + (isPanelMinimized ? 'Expand location information' : 'Minimize location information') + '" title="' + (isPanelMinimized ? 'Expand' : 'Minimize') + '"><i class="fa ' + (isPanelMinimized ? 'fa-expand-alt' : 'fa-minus') + '" aria-hidden="true"></i></button><button type="button" class="history-panel-close" data-close-panel aria-label="Close location information" title="Close"><i class="fa fa-times" aria-hidden="true"></i></button></div><div class="history-panel-heading"><span class="history-panel-kicker"><i class="fa fa-map-marker-alt me-1" aria-hidden="true"></i>' + escapeHtml(location.category) + '</span><h2>' + escapeHtml(location.name) + '</h2></div><div class="history-panel-body"><div class="history-fact"><strong>About this place</strong><span>' + escapeHtml(location.description) + '</span></div><div class="history-fact"><strong>Historical significance</strong><span>' + escapeHtml(location.historicalSignificance) + '</span></div>' + relatedEventsMarkup(location) + '<div class="history-fact"><strong>People connected to this place</strong><span>' + (location.people.length ? location.people.map(escapeHtml).join(', ') : 'Information not yet documented.') + '</span></div>' + (location.neighborhood ? '<div class="history-fact"><strong>Neighbourhood</strong><span>' + escapeHtml(location.neighborhood) + '</span></div>' : '') + (relatedLinks ? '<div class="history-fact"><strong>Connected places</strong>' + relatedLinks + '</div>' : '') + familyLink + publicPlaceLink + '<div class="history-fact"><strong>Archive stories</strong>' + archiveLinks + '</div><div class="history-fact"><strong>History Book</strong>' + bookMarkup(location.bookReference) + '</div>' + (publicPlace ? publicGatheringPlaceMediaMarkup(publicPlace) : mediaMarkup(location.media || {}, Boolean(location.familyId), location.id === 'ballan-khole' || location.id === 'dala-gilleh' ? location.id : null)) + mapsActionMarkup(location) + '</div>';
+        panel.querySelectorAll('[data-public-place-image]').forEach(function (image) {
+            image.addEventListener('error', function () {
+                const placeholder = document.createElement('div');
+                placeholder.className = 'history-public-place-image-placeholder';
+                placeholder.setAttribute('role', 'img');
+                placeholder.setAttribute('aria-label', 'Historical image coming soon');
+                placeholder.textContent = 'Historical image coming soon.';
+                image.replaceWith(placeholder);
+            }, { once: true });
+        });
         panel.querySelectorAll('[data-event-id]').forEach(function (button) {
             button.addEventListener('click', function () { selectEvent(button.dataset.eventId, true); });
         });

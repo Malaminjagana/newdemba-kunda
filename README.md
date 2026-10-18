@@ -259,6 +259,10 @@ To add media later, preserve the original files, then set the matching record's 
 
 **Change an illustrative position:** Edit `mapPosition: [vertical, horizontal]`. These positions are illustrative and not survey coordinates. Lines use `points`; regions use `bounds`.
 
+### Public Gathering Places
+
+The six kura records use `js/public-gathering-places-data.js` as their shared source for names, book-based descriptions, image paths and map-location IDs. The Digital Museum cards and the matching existing map records both read this data. Keep the existing map IDs and schematic positions unchanged until local positions are confirmed; the six current markers have `coordinates: null` and their positions are illustrative, not verified geographic locations. Add only a verified local photograph to a place's `image` field; an empty image field displays “Historical image coming soon.”
+
 **Change click-panel information:** For content, change the selected location’s fields in `js/village-map-data.js`. For labels/structure/behaviour, edit `renderPanel(location)` in `js/village-map.js`. For visual layout, edit `css/village-map.css`.
 
 ## Complete Map Location Inventory
