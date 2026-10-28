@@ -30,7 +30,7 @@ const museumCollections = {
         { id: 'jamban-dala', name: 'Jamban Dala', description: '', shortDescription: 'Documented village pond.', image: '', imageAlt: 'Historical image coming soon for Jamban Dala', mapLocationId: 'jamban-dala' },
         { id: 'simakhan-dala', name: 'Simakhan Dala', description: '', shortDescription: 'Documented village pond.', image: '', imageAlt: 'Historical image coming soon for Simakhan Dala', mapLocationId: 'simakhan-dala' },
         { id: 'kumma-kejugun-dala', name: 'Kumma Kejugun Dala', description: '', shortDescription: 'Documented village pond.', image: '', imageAlt: 'Historical image coming soon for Kumma Kejugun Dala', mapLocationId: 'kumma-kejugun-dala' },
-        { id: 'dala-khore', name: 'Dala Khore', description: '', shortDescription: 'Documented village pond.', image: '', imageAlt: 'Historical image coming soon for Dala Khore', mapLocationId: 'dala-khore' },
+        { id: 'dala-khore', name: 'Dala Khore', description: '', shortDescription: 'Documented village pond.', image: 'img/Ponds/Dala khore.webp', images: ['img/Ponds/Dala khore.webp'], imageAlt: 'Dala Khore pond', videos: ['img/Ponds/Dala khore.mp4'], mapLocationId: 'dala-khore' },
         { id: 'sikhou-hounen-dala', name: 'Sikhou Hounen Dala', description: '', shortDescription: 'Documented village pond.', image: '', imageAlt: 'Historical image coming soon for Sikhou Hounen Dala', mapLocationId: 'sikhou-hounen-dala' },
         { id: 'khilin-dala', name: 'Khilin Dala', description: '', shortDescription: 'Documented village pond.', image: '', imageAlt: 'Historical image coming soon for Khilin Dala', mapLocationId: 'khilin-dala' },
         { id: 'saban-dala', name: 'Saban Dala', description: '', shortDescription: 'Documented village pond.', image: '', imageAlt: 'Historical image coming soon for Saban Dala', mapLocationId: 'saban-dala' },
@@ -125,6 +125,7 @@ museumCollections.families.records = museumCollections.families.records.map(func
     };
     const familyMedia = {
         'compound-001': { name: 'Jaganara Khore', image: 'img/families/jaganara_khore.webp', video: 'img/families/jaganara_khore.mp4' },
+        'compound-002': { name: 'BILLEN CHAKEYA', image: 'img/families/BILLEN CHAKEYA.webp', video: 'img/families/BILLEN CHAKEYA.mp4' },
         'compound-003': { name: 'Babuchiya', image: 'img/families/babuchiya.webp', video: 'img/families/babuchiya.mp4' },
         'compound-004': { name: 'Dukureh Family Dukurella', image: 'img/families/dukureh family_dukurella.webp', video: 'img/families/dukureh family_dukurella.mp4' },
         'compound-006': { name: 'Hydara Kunda Family', image: 'img/families/hydara kunda family.webp', video: 'img/families/hydara kunda family.webp.mp4' },

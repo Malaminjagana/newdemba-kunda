@@ -94,7 +94,7 @@
         const description = record.description ? '<p class="collection-copy">' + escapeHtml(record.description) + '</p>' : '';
         const hasWellGallery = isWell && record.images && record.images.length > 1;
         const hasPondVideo = isPond && record.videos && record.videos.length;
-        const hasDalaGillehMedia = isPond && record.id === 'dala-gilleh' && ((record.images && record.images.length) || hasPondVideo);
+        const hasPondMedia = isPond && ((record.images && record.images.length) || record.image || hasPondVideo);
         const familyImages = record.images && record.images.length ? record.images : record.image ? [record.image] : [];
         const hasFamilyMedia = key === 'families' && (familyImages.length || (record.videos && record.videos.length));
         const detailMedia = hasFamilyMedia
@@ -103,8 +103,8 @@
             }).join('') + (record.videos || []).map(function (video, index) {
                 return '<video class="collection-family-media-video" src="' + escapeHtml(video) + '" controls preload="metadata" playsinline aria-label="' + escapeHtml(record.name + ' video ' + (index + 1)) + '"></video>';
             }).join('') + '</div></section>'
-            : hasDalaGillehMedia
-            ? '<section class="collection-family-media" aria-labelledby="pond-media-title"><h3 id="pond-media-title">Media</h3><div class="collection-family-media-grid">' + (record.images || []).map(function (image, index) {
+            : hasPondMedia
+            ? '<section class="collection-family-media" aria-labelledby="pond-media-title"><h3 id="pond-media-title">Media</h3><div class="collection-family-media-grid">' + (record.images || (record.image ? [record.image] : [])).map(function (image, index) {
                 const alt = record.name + ' photograph ' + (index + 1);
                 return '<a href="' + escapeHtml(image) + '" target="_blank" rel="noopener noreferrer"><img src="' + escapeHtml(image) + '" alt="' + escapeHtml(alt) + '" loading="lazy" class="collection-family-media-image"></a>';
             }).join('') + (record.videos || []).map(function (video, index) {

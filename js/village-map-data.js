@@ -108,6 +108,19 @@ villageHistoryData = {
             documents: []
         };
     }
+    const dalaKhoreLocation = data.locations.find(function (location) { return location.id === 'dala-khore'; });
+    const dalaKhorePond = typeof museumCollections !== 'undefined' && museumCollections.ponds
+        ? museumCollections.ponds.records.find(function (pond) { return pond.id === 'dala-khore'; })
+        : null;
+    if (dalaKhoreLocation && dalaKhorePond) {
+        dalaKhoreLocation.media = {
+            historicalImages: [],
+            currentImages: dalaKhorePond.images || (dalaKhorePond.image ? [dalaKhorePond.image] : []),
+            videos: dalaKhorePond.videos || [],
+            audio: [],
+            documents: []
+        };
+    }
     additions.forEach(function (location) {
         if (!waterSourceMedia || !Object.prototype.hasOwnProperty.call(waterSourceMedia, location.id)) return;
         const videos = location.id === 'ballan-khole' && waterSourceMedia[location.id] ? waterSourceMedia[location.id] : [];
