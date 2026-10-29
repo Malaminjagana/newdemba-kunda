@@ -97,9 +97,16 @@
         const hasPondMedia = isPond && ((record.images && record.images.length) || record.image || hasPondVideo);
         const familyImages = record.images && record.images.length ? record.images : record.image ? [record.image] : [];
         const hasFamilyMedia = key === 'families' && (familyImages.length || (record.videos && record.videos.length));
+        const hasFarmingMedia = isFarmingRecord && (familyImages.length || (record.videos && record.videos.length));
         const detailMedia = hasFamilyMedia
             ? '<section class="collection-family-media" aria-labelledby="family-media-title"><h3 id="family-media-title">Media</h3><div class="collection-family-media-grid">' + familyImages.map(function (image, index) {
                 return '<img src="' + escapeHtml(image) + '" alt="' + escapeHtml(record.imageAlt || record.name + ' family photograph ' + (index + 1)) + '" loading="lazy" class="collection-family-media-image">';
+            }).join('') + (record.videos || []).map(function (video, index) {
+                return '<video class="collection-family-media-video" src="' + escapeHtml(video) + '" controls preload="metadata" playsinline aria-label="' + escapeHtml(record.name + ' video ' + (index + 1)) + '"></video>';
+            }).join('') + '</div></section>'
+            : hasFarmingMedia
+            ? '<section class="collection-family-media" aria-labelledby="landscape-media-title"><h3 id="landscape-media-title">Media</h3><div class="collection-family-media-grid">' + familyImages.map(function (image, index) {
+                return '<img src="' + escapeHtml(image) + '" alt="' + escapeHtml(record.imageAlt || record.name + ' photograph ' + (index + 1)) + '" loading="lazy" class="collection-family-media-image">';
             }).join('') + (record.videos || []).map(function (video, index) {
                 return '<video class="collection-family-media-video" src="' + escapeHtml(video) + '" controls preload="metadata" playsinline aria-label="' + escapeHtml(record.name + ' video ' + (index + 1)) + '"></video>';
             }).join('') + '</div></section>'

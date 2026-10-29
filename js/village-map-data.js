@@ -184,6 +184,29 @@ villageHistoryData = {
         ['lost-bantin-koto', 'Bantin Koto', [33, 98], 'South next to Lambidou, associated with Tamba Sanyang.', 'Vanished settlement. Its map position is illustrative and not a verified geographic coordinate.', ['lost-lambidou']]
     ].forEach(function (entry) { add(entry[0], entry[1], 'Lost Villages', entry[2], entry[3], entry[4], entry[5]); });
     [
+        ['farmland-11', 'lost-tobali-kunda'],
+        ['farmland-12', 'lost-jinna-wurunde'],
+        ['farmland-14', 'lost-tumbun-khore'],
+        ['farmland-15', 'lost-tenkinam'],
+        ['farmland-16'],
+        ['farmland-19'],
+        ['farmland-20']
+    ].forEach(function (entry) {
+        const farmingRecord = museumCollections.farming.records.find(function (record) { return record.id === entry[0]; });
+        if (!farmingRecord) return;
+        [entry[0]].concat(entry.slice(1)).forEach(function (locationId) {
+            const location = data.locations.find(function (item) { return item.id === locationId; });
+            if (!location) return;
+            location.media = {
+                historicalImages: [],
+                currentImages: farmingRecord.images || (farmingRecord.image ? [farmingRecord.image] : []),
+                videos: farmingRecord.videos || [],
+                audio: [],
+                documents: []
+            };
+        });
+    });
+    [
         ['dibirou', 'Dibirou', [86, 75], 'About 10 km southeast; established around 1937 by people who had lived in New Demba Kunda.', 'The distance and direction are preserved here; this map position is illustrative.', ['village-centre']],
         ['jidda-moudou', 'Jidda Moudou', [48, 98], 'About 6 km south; established around 1946 by people who had lived in New Demba Kunda.', 'The distance and direction are preserved here; this map position is illustrative.', ['village-centre']],
         ['simbi', 'Simbi', [12, 94], 'About 12 km southwest; established around 1950 by people who had lived in New Demba Kunda.', 'The distance and direction are preserved here; this map position is illustrative.', ['village-centre']]
