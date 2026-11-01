@@ -121,6 +121,19 @@ villageHistoryData = {
             documents: []
         };
     }
+    const dalaLemmehLocation = data.locations.find(function (location) { return location.id === 'dala-lemmeh'; });
+    const dalaLemmehPond = typeof museumCollections !== 'undefined' && museumCollections.ponds
+        ? museumCollections.ponds.records.find(function (pond) { return pond.id === 'dala-lemmeh'; })
+        : null;
+    if (dalaLemmehLocation && dalaLemmehPond) {
+        dalaLemmehLocation.media = {
+            historicalImages: [],
+            currentImages: dalaLemmehPond.images || (dalaLemmehPond.image ? [dalaLemmehPond.image] : []),
+            videos: dalaLemmehPond.videos || [],
+            audio: [],
+            documents: []
+        };
+    }
     additions.forEach(function (location) {
         if (!waterSourceMedia || !Object.prototype.hasOwnProperty.call(waterSourceMedia, location.id)) return;
         const videos = location.id === 'ballan-khole' && waterSourceMedia[location.id] ? waterSourceMedia[location.id] : [];
@@ -184,6 +197,10 @@ villageHistoryData = {
         ['lost-bantin-koto', 'Bantin Koto', [33, 98], 'South next to Lambidou, associated with Tamba Sanyang.', 'Vanished settlement. Its map position is illustrative and not a verified geographic coordinate.', ['lost-lambidou']]
     ].forEach(function (entry) { add(entry[0], entry[1], 'Lost Villages', entry[2], entry[3], entry[4], entry[5]); });
     [
+        ['farmland-2'],
+        ['farmland-4'],
+        ['farmland-6'],
+        ['farmland-9', 'lost-biraima-kaara'],
         ['farmland-11', 'lost-tobali-kunda'],
         ['farmland-12', 'lost-jinna-wurunde'],
         ['farmland-14', 'lost-tumbun-khore'],

@@ -237,7 +237,7 @@
         return '<dl class="history-book-reference"><div><dt>Chapter</dt><dd>' + escapeHtml(reference.chapter) + '</dd></div><div><dt>Page</dt><dd>' + escapeHtml(reference.page) + '</dd></div><div><dt>Section</dt><dd>' + escapeHtml(reference.section) + '</dd></div></dl>';
     }
 
-    const inlineVideoLocationIds = ['farmland-11', 'farmland-12', 'farmland-14', 'farmland-15', 'farmland-16', 'farmland-19', 'farmland-20', 'lost-tobali-kunda', 'lost-jinna-wurunde', 'lost-tumbun-khore', 'lost-tenkinam'];
+    const inlineVideoLocationIds = ['dala-lemmeh', 'farmland-2', 'farmland-4', 'farmland-6', 'farmland-9', 'farmland-11', 'farmland-12', 'farmland-14', 'farmland-15', 'farmland-16', 'farmland-19', 'farmland-20', 'lost-biraima-kaara', 'lost-tobali-kunda', 'lost-jinna-wurunde', 'lost-tumbun-khore', 'lost-tenkinam'];
     function mediaMarkup(media, familyLocation, inlineVideoLocationId) {
         const mediaTypes = [
             ['historicalImages', 'far fa-image', 'Historical photographs', 'Photographs not yet documented', 'image'],
@@ -251,7 +251,7 @@
             if (!sources.length) return '<div class="history-media-placeholder"><i class="' + item[1] + '" aria-hidden="true"></i><span>' + item[2] + '</span><small>' + item[3] + '</small></div>';
             if (item[4] === 'image') return sources.map(function (source) { return '<a class="history-media-item" href="' + escapeHtml(source) + '" target="_blank" rel="noopener noreferrer"><img class="' + (familyLocation ? 'history-media-family-image' : '') + '" src="' + escapeHtml(source) + '" alt="' + escapeHtml(item[2]) + '"><span>' + item[2] + '</span></a>'; }).join('');
             const source = sources[0];
-            if (item[0] === 'videos' && inlineVideoLocationId === 'dala-gilleh') return sources.map(function (videoSource, index) { return '<div class="history-media-video-item"><video src="' + escapeHtml(videoSource) + '" controls preload="metadata" playsinline aria-label="' + escapeHtml(item[2] + ' ' + (index + 1)) + '"></video><span>' + item[2] + '</span></div>'; }).join('');
+            if (item[0] === 'videos' && (inlineVideoLocationId === 'dala-gilleh' || inlineVideoLocationIds.indexOf(inlineVideoLocationId) >= 0)) return sources.map(function (videoSource, index) { return '<div class="history-media-video-item"><video src="' + escapeHtml(videoSource) + '" controls preload="metadata" playsinline aria-label="' + escapeHtml(item[2] + ' ' + (index + 1)) + '"></video><span>' + item[2] + '</span></div>'; }).join('');
             if (item[0] === 'videos' && (familyLocation || inlineVideoLocationId)) return '<div class="history-media-video-item"><video src="' + escapeHtml(source) + '" controls preload="metadata" playsinline aria-label="' + escapeHtml(item[2]) + '"></video><span>' + item[2] + '</span></div>';
             return '<a class="history-media-item" href="' + escapeHtml(source) + '" target="_blank" rel="noopener noreferrer"><i class="' + item[1] + '" aria-hidden="true"></i><span>' + item[2] + '</span></a>';
         }).join('') + '</div></section>';
