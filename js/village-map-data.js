@@ -198,8 +198,10 @@ villageHistoryData = {
     ].forEach(function (entry) { add(entry[0], entry[1], 'Lost Villages', entry[2], entry[3], entry[4], entry[5]); });
     [
         ['farmland-2'],
+        ['farmland-3'],
         ['farmland-4'],
         ['farmland-6'],
+        ['farmland-10'],
         ['farmland-9', 'lost-biraima-kaara'],
         ['farmland-11', 'lost-tobali-kunda'],
         ['farmland-12', 'lost-jinna-wurunde'],
