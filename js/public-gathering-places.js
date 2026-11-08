@@ -35,21 +35,42 @@
         detail.hidden = false;
         document.body.classList.add('collection-modal-open');
         document.body.style.top = '-' + scrollPosition + 'px';
-        detail.innerHTML = '<div class="collection-sheet" role="dialog" aria-modal="true" aria-labelledby="public-place-detail-title" aria-label="Public Gathering Place Archive"><header class="collection-modal-header"><p class="museum-kicker">Public Gathering Place Archive</p><button type="button" class="collection-detail-close" data-close-public-place aria-label="Close public gathering place details"><i class="fa fa-times" aria-hidden="true"></i></button></header><div class="collection-sheet-scroll"><div class="collection-cover has-fallback" data-cover><div class="collection-cover-fallback"><i class="fa fa-users" aria-hidden="true"></i><span>Historical image coming soon</span></div></div><div class="collection-sheet-content"><h2 id="public-place-detail-title">' + escapeHtml(place.name) + '</h2><p class="collection-compound">Public Gathering Place</p><p class="collection-copy">' + escapeHtml(place.description) + '</p><p class="collection-book-cta">Read more from the book <i class="fa fa-arrow-right" aria-hidden="true"></i></p><a class="collection-map-link" href="village-map.html?location=' + encodeURIComponent(place.mapLocationId) + '">View on village map <i class="fa fa-arrow-right" aria-hidden="true"></i></a></div></div></div>';
+        const images = place.images || (place.image ? [place.image] : []);
+        const videos = place.videos || [];
+        const coverImage = place.image ? '<img src="' + escapeHtml(place.image) + '" alt="' + escapeHtml(place.name + ' photograph') + '">' : '';
+        const media = images.length || videos.length
+            ? '<section class="collection-family-media" aria-labelledby="public-place-media-title"><h3 id="public-place-media-title">Media</h3><div class="collection-family-media-grid">' + images.map(function (image, index) {
+                return '<a href="' + escapeHtml(image) + '" target="_blank" rel="noopener noreferrer"><img src="' + escapeHtml(image) + '" alt="' + escapeHtml(place.name + ' photograph ' + (index + 1)) + '" loading="lazy" class="collection-family-media-image"></a>';
+            }).join('') + videos.map(function (video, index) {
+                return '<video class="collection-family-media-video" src="' + escapeHtml(video) + '" controls preload="metadata" playsinline aria-label="' + escapeHtml(place.name + ' video ' + (index + 1)) + '"></video>';
+            }).join('') + '</div></section>'
+            : '';
+        detail.innerHTML = '<div class="collection-sheet" role="dialog" aria-modal="true" aria-labelledby="public-place-detail-title" aria-label="Public Gathering Place Archive"><header class="collection-modal-header"><p class="museum-kicker">Public Gathering Place Archive</p><button type="button" class="collection-detail-close" data-close-public-place aria-label="Close public gathering place details"><i class="fa fa-times" aria-hidden="true"></i></button></header><div class="collection-sheet-scroll"><div class="collection-cover' + (coverImage ? '' : ' has-fallback') + '" data-cover>' + coverImage + '<div class="collection-cover-fallback"><i class="fa fa-users" aria-hidden="true"></i><span>Historical image coming soon</span></div></div><div class="collection-sheet-content"><h2 id="public-place-detail-title">' + escapeHtml(place.name) + '</h2><p class="collection-compound">Public Gathering Place</p><p class="collection-copy">' + escapeHtml(place.description) + '</p><p class="collection-book-cta">Read more from the book <i class="fa fa-arrow-right" aria-hidden="true"></i></p><a class="collection-map-link" href="village-map.html?location=' + encodeURIComponent(place.mapLocationId) + '">View on village map <i class="fa fa-arrow-right" aria-hidden="true"></i></a>' + media + '</div></div></div>';
         detail.querySelector('[data-close-public-place]').addEventListener('click', closeDetail);
         detail.querySelector('[data-close-public-place]').focus();
     }
 
     if (grid) {
         grid.innerHTML = window.publicGatheringPlaces.map(function (place) {
-            return '<a class="collection-card public-gathering-card" id="public-gathering-place-' + escapeHtml(place.id) + '" href="village-map.html?location=' + encodeURIComponent(place.mapLocationId) + '" data-public-place-id="' + escapeHtml(place.id) + '"><div class="collection-card-image has-fallback"><div class="collection-card-icon"><i class="fa fa-users" aria-hidden="true"></i><span>Historical image coming soon</span></div></div><div class="collection-card-body"><p class="museum-kicker">Public gathering place</p><h2>' + escapeHtml(place.name) + '</h2><p>' + escapeHtml(place.description) + '</p><span class="public-gathering-card-action">Explore place <i class="fa fa-arrow-right" aria-hidden="true"></i></span></div></a>';
+            const image = place.image ? '<img src="' + escapeHtml(place.image) + '" alt="' + escapeHtml(place.name + ' photograph') + '" loading="lazy">' : '';
+            return '<a class="collection-card public-gathering-card" id="public-gathering-place-' + escapeHtml(place.id) + '" href="village-map.html?location=' + encodeURIComponent(place.mapLocationId) + '" data-public-place-id="' + escapeHtml(place.id) + '"><div class="collection-card-image' + (image ? '' : ' has-fallback') + '">' + image + '<div class="collection-card-icon"><i class="fa fa-users" aria-hidden="true"></i><span>Historical image coming soon</span></div></div><div class="collection-card-body"><p class="museum-kicker">Public gathering place</p><h2>' + escapeHtml(place.name) + '</h2><p>' + escapeHtml(place.description) + '</p><span class="public-gathering-card-action">Explore place <i class="fa fa-arrow-right" aria-hidden="true"></i></span></div></a>';
         }).join('');
+        grid.querySelectorAll('.collection-card-image img').forEach(function (image) {
+            image.addEventListener('error', function () {
+                image.remove();
+                image.closest('.collection-card-image').classList.add('has-fallback');
+            }, { once: true });
+        });
     }
 
     if (homeGrid) {
         homeGrid.innerHTML = window.publicGatheringPlaces.map(function (place) {
-            return '<div class="col-md-6 col-xl-4"><a href="village-map.html?location=' + encodeURIComponent(place.mapLocationId) + '" class="heritage-card" data-public-place-id="' + escapeHtml(place.id) + '" aria-label="View details for ' + escapeHtml(place.name) + '"><span class="collection-home-icon collection-home-image has-fallback"><i class="fa fa-users" aria-hidden="true"></i><span>Historical image coming soon</span></span><div class="heritage-card-label-bar"><span>' + escapeHtml(place.name) + '</span><small>View place history and map</small></div></a></div>';
+            const image = place.image
+                ? '<img src="' + escapeHtml(place.image) + '" alt="' + escapeHtml(place.name + ' historical photograph') + '" loading="lazy">'
+                : '<i class="fa fa-users" aria-hidden="true"></i><span>Historical image coming soon</span>';
+            return '<div class="col-md-6 col-xl-4"><a href="village-map.html?location=' + encodeURIComponent(place.mapLocationId) + '" class="heritage-card" data-public-place-id="' + escapeHtml(place.id) + '" aria-label="View details for ' + escapeHtml(place.name) + '"><span class="collection-home-icon collection-home-image' + (place.image ? '' : ' has-fallback') + '">' + image + '</span><div class="heritage-card-label-bar"><span>' + escapeHtml(place.name) + '</span><small>View place history and map</small></div></a></div>';
         }).join('');
+        homeGrid.querySelectorAll('.collection-home-image img').forEach(function (image) { image.addEventListener('error', function () { image.remove(); image.closest('.collection-home-image').classList.add('has-fallback'); }); });
     }
 
     document.querySelectorAll('[data-public-place-id]').forEach(function (card) {

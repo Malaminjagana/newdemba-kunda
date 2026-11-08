@@ -209,7 +209,8 @@ villageHistoryData = {
         ['farmland-15', 'lost-tenkinam'],
         ['farmland-16'],
         ['farmland-19'],
-        ['farmland-20']
+        ['farmland-20'],
+        ['forest-1']
     ].forEach(function (entry) {
         const farmingRecord = museumCollections.farming.records.find(function (record) { return record.id === entry[0]; });
         if (!farmingRecord) return;

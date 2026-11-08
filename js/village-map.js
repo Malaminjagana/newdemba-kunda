@@ -160,10 +160,19 @@
     }
 
     function publicGatheringPlaceMediaMarkup(place) {
-        const image = place.image
-            ? '<img class="history-public-place-image" data-public-place-image src="' + escapeHtml(place.image) + '" alt="' + escapeHtml(place.name + ' historical photograph') + '" loading="lazy">'
-            : '<div class="history-public-place-image-placeholder" role="img" aria-label="Historical image coming soon">Historical image coming soon.</div>';
-        return '<section class="history-media-section"><strong>Historical image</strong><div class="history-public-place-media">' + image + '</div></section>';
+        const images = place.images || (place.image ? [place.image] : []);
+        const videos = place.videos || [];
+        if (!images.length && !videos.length) {
+            const image = place.image
+                ? '<img class="history-public-place-image" data-public-place-image src="' + escapeHtml(place.image) + '" alt="' + escapeHtml(place.name + ' historical photograph') + '" loading="lazy">'
+                : '<div class="history-public-place-image-placeholder" role="img" aria-label="Historical image coming soon">Historical image coming soon.</div>';
+            return '<section class="history-media-section"><strong>Historical image</strong><div class="history-public-place-media">' + image + '</div></section>';
+        }
+        return '<section class="history-media-section"><strong>Media</strong><div class="history-media-grid">' + images.map(function (image, index) {
+            return '<a class="history-media-item" href="' + escapeHtml(image) + '" target="_blank" rel="noopener noreferrer"><img class="history-media-family-image" src="' + escapeHtml(image) + '" alt="' + escapeHtml(place.name + ' photograph ' + (index + 1)) + '" loading="lazy"><span>Photograph ' + (index + 1) + '</span></a>';
+        }).join('') + videos.map(function (video, index) {
+            return '<div class="history-media-video-item"><video src="' + escapeHtml(video) + '" controls preload="metadata" playsinline aria-label="' + escapeHtml(place.name + ' video ' + (index + 1)) + '"></video><span>Video ' + (index + 1) + '</span></div>';
+        }).join('') + '</div></section>';
     }
 
     function categoryIcon(category) {
@@ -237,7 +246,7 @@
         return '<dl class="history-book-reference"><div><dt>Chapter</dt><dd>' + escapeHtml(reference.chapter) + '</dd></div><div><dt>Page</dt><dd>' + escapeHtml(reference.page) + '</dd></div><div><dt>Section</dt><dd>' + escapeHtml(reference.section) + '</dd></div></dl>';
     }
 
-    const inlineVideoLocationIds = ['dala-lemmeh', 'farmland-2', 'farmland-3', 'farmland-4', 'farmland-6', 'farmland-9', 'farmland-11', 'farmland-12', 'farmland-14', 'farmland-15', 'farmland-16', 'farmland-19', 'farmland-20', 'lost-biraima-kaara', 'lost-tobali-kunda', 'lost-jinna-wurunde', 'lost-tumbun-khore', 'lost-tenkinam'];
+    const inlineVideoLocationIds = ['dala-lemmeh', 'farmland-2', 'farmland-3', 'farmland-4', 'farmland-6', 'farmland-9', 'farmland-11', 'farmland-12', 'farmland-14', 'farmland-15', 'farmland-16', 'farmland-19', 'farmland-20', 'forest-1', 'lost-biraima-kaara', 'lost-tobali-kunda', 'lost-jinna-wurunde', 'lost-tumbun-khore', 'lost-tenkinam'];
     function mediaMarkup(media, familyLocation, inlineVideoLocationId) {
         const mediaTypes = [
             ['historicalImages', 'far fa-image', 'Historical photographs', 'Photographs not yet documented', 'image'],
