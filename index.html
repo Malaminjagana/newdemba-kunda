@@ -27,6 +27,7 @@
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
         <link href="css/collections.css" rel="stylesheet">
+        <link href="css/navigation.css" rel="stylesheet">
 
 <link rel="icon" type="image/jpeg" href="img/demba-kunda-village-mosque-gambia1.jpg" />
     </head>
@@ -40,52 +41,48 @@
         <!-- Spinner End -->
 
 
-            <div class="container">
-                <nav class="navbar navbar-light navbar-expand-lg py-3">
-                   <a href="index.html" class="navbar-brand">
-    <h1 class="mb-0">NEW <span class="text-primary">DEMBA</span> KUNDA <span class="text-primary"> DIGITAL MUSEUM</span> </h1>
-</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                        <span class="fa fa-bars text-primary"></span>
-                    </button>
-                    <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
-                        <div class="navbar-nav ms-lg-auto mx-xl-auto">
-                            <a href="index.html" class="nav-item nav-link active">Home</a>
-                            <a href="about.html" class="nav-item nav-link">About</a>
-                           
-</a>
-                           
-                            
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">History</a>
-                                <div class="dropdown-menu m-0 rounded-0">
-                                     <a href="Archive.html" class="nav-item nav-link">Village Archive</a>
-                                    <a href="timeline.html" class="dropdown-item">Timeline</a>
-                                    <a href="village-map.html" class="dropdown-item">Village Map</a>
-                                    <a href="/family.html" class="dropdown-item">Families</a>
-                                    <a href="/forests.html" class="dropdown-item">Forests</a>
-                                   
+        <header class="ndk-header">
+            <div class="container ndk-nav-shell">
+                <nav class="ndk-navbar" aria-label="Primary navigation">
+                    <a href="index.html" class="ndk-brand">
+                        <span>NEW <strong>DEMBA</strong> KUNDA</span>
+                        <span class="ndk-brand-subtitle">DIGITAL MUSEUM</span>
+                    </a>
+                    <div class="ndk-nav-content" id="primary-navigation">
+                        <div class="ndk-nav-links">
+                            <a href="index.html" class="ndk-nav-link active" aria-current="page">Home</a>
+                            <a href="#village-heritage" class="ndk-nav-link">About</a>
+                            <div class="ndk-nav-dropdown">
+                                <button type="button" class="ndk-nav-link ndk-dropdown-toggle" aria-expanded="false" aria-controls="history-menu">History</button>
+                                <div class="ndk-dropdown-menu" id="history-menu" hidden>
+                                    <a href="museum.html" class="ndk-dropdown-link">Village Archive</a>
+                                    <a href="#village-timeline" class="ndk-dropdown-link">Timeline</a>
+                                    <a href="village-map.html" class="ndk-dropdown-link">Village Map</a>
+                                    <a href="families.html" class="ndk-dropdown-link">Families</a>
+                                    <a href="forest.html" class="ndk-dropdown-link">Forests</a>
                                 </div>
                             </div>
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Community</a>
-                                <div class="dropdown-menu m-0 rounded-0">
-                                    <a href="timeline.html" class="dropdown-item">Submit a Story</a>
-                                    <a href="timeline.html" class="dropdown-item">Submit Photos/video</a>
-                                    <a href="timeline.html" class="dropdown-item">Memories</a>
+                            <div class="ndk-nav-dropdown">
+                                <button type="button" class="ndk-nav-link ndk-dropdown-toggle" aria-expanded="false" aria-controls="community-menu">Community</button>
+                                <div class="ndk-dropdown-menu" id="community-menu" hidden>
+                                    <a href="#village-timeline" class="ndk-dropdown-link">Submit a Story</a>
+                                    <a href="#village-timeline" class="ndk-dropdown-link">Submit Photos/video</a>
+                                    <a href="#village-timeline" class="ndk-dropdown-link">Memories</a>
                                 </div>
-                        
-                            <a href="contact.html" class="nav-item nav-link">Contact</a>
-                           
-                             <a href="event.html" class="nav-item nav-link">Events</a>
+                            </div>
+                            <a href="contact.html" class="ndk-nav-link">Contact</a>
+                            <a href="event.html" class="ndk-nav-link">Events</a>
                         </div>
-                         
-                            
-                        <a href="" class="btn btn-primary py-2 px-4 d-none d-xl-inline-block">Donate</a>
+                    </div>
+                    <div class="ndk-nav-actions">
+                        <button class="ndk-menu-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open navigation menu">
+                            <span></span><span></span>
+                        </button>
+                        <a href="index.html" class="ndk-action-link">Donate</a>
                     </div>
                 </nav>
             </div>
-        </div>
+        </header>
         <!-- Topbar End -->
 
 
@@ -728,7 +725,7 @@ We envision a trusted digital home where the stories of our ancestors, families,
         <!-- Sermon End -->
 
 
-        <!-- Blog Start -->
+        <!-- Blog Start news go here -->
         <div class="container-fluid py-5">
             <div class="container py-5">
                 <h1 class="display-3 mb-5 wow fadeIn" data-wow-delay="0.1s">Latest From <span class="text-primary">Our Blog</span></h1>
@@ -1111,6 +1108,7 @@ We envision a trusted digital home where the stories of our ancestors, families,
         <script src="js/public-gathering-places.js"></script>
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
+        <script src="js/navigation.js"></script>
     </body>
 
 </html>
